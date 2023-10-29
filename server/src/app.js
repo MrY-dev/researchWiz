@@ -1,6 +1,5 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
-import buildMiddleware from './middleware/buildMiddleware.js';
 
 dotenv.config();
 
