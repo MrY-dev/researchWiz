@@ -9,3 +9,8 @@ const PaperSchema = new Schema(
     },
     { timestamps: true }
 );
+
+const PaperModel = papersDB.model('PaperModel', PaperSchema);
+
+export default PaperModel;
+
