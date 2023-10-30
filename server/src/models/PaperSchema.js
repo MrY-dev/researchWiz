@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { paperDB } from '../middlewares/database.js';
 
 const { Schema } = mongoose;
 
@@ -10,7 +11,7 @@ const PaperSchema = new Schema(
     { timestamps: true }
 );
 
-const PaperModel = papersDB.model('PaperModel', PaperSchema);
+const PaperModel = paperDB.model('PaperModel', PaperSchema);
 
 export default PaperModel;
 

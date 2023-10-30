@@ -12,4 +12,4 @@ const getPaperPath = async (paperTitle) => {
   return paperDetail.path;
 };
 
-export default { getPaperPath, getPapers };
+export { getPaperPath, getPapers };
