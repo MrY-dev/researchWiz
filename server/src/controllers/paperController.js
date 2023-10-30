@@ -1,10 +1,15 @@
 // searchPaper string(searchterm) matching title in dbs
-import PaperSchema from "../models/PaperSchema"
+import {getPapers} from "../services/PaperFunc"
 const searchPaper = async (req, res) => {
-    
-    let search = req.query.keyword;
-    let queryval = {title: req.query.keyword};
-
+    let searchTerm = req.query.keyword
+    if(!searchTerm){
+	res.json("Invalid Input").status(400);
+    }
+    if(searchTerm.trim.length() === 0){
+	res.json("Invalid Input").status(400);
+    }
+    let result = await getPapers(searchTerm);
+    res.json(result).status(200);
 };
 
 const addComment = () => {
