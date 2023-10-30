@@ -1,3 +1,5 @@
+import getPaperPath from "../services/paperFunc";
+
 const searchPaper = async (req, res) => {
 
 };
@@ -14,7 +16,9 @@ const recommendPaper = () => {
 const sendPaper = (req, res) => {
   const paperTitle = req.query.title;
 
-  
+  const paperPath = getPaperPath(paperTitle);
+
+  res.sendFile(paperPath);
 };
 
 export {searchPaper, addComment, recommendPaper, sendPaper};
