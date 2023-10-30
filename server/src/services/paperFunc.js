@@ -1,4 +1,4 @@
-import PaperModel from "../models/PaperSchema"
+import PaperModel from "../models/PaperSchema.js"
 
 const getPapers = async (searchTerm)=>{
     const db = PaperModel;

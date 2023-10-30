@@ -1,6 +1,6 @@
 
 // searchPaper string(searchterm) matching title in dbs
-import {getPapers, getPaperPath} from "../services/paperFunc"
+import {getPapers, getPaperPath} from "../services/paperFunc.js"
 
 const searchPaper = async (req, res) => {
     let searchTerm = req.query.keyword
@@ -31,7 +31,7 @@ const sendPaper = (req, res) => {
   }
 
   if (paperTitle.trim.length() === 0) {
-
+    res.status(400).json({ message: 'Paper title cannot be empty' })
   }
 
   const paperPath = getPaperPath(paperTitle);
