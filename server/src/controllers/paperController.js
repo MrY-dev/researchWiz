@@ -1,5 +1,7 @@
+
 // searchPaper string(searchterm) matching title in dbs
-import {getPapers} from "../services/paperFunc"
+import {getPapers, getPaperPath} from "../services/PaperFunc"
+
 const searchPaper = async (req, res) => {
     let searchTerm = req.query.keyword
     if(!searchTerm){
@@ -22,7 +24,11 @@ const recommendPaper = () => {
 
 // Send the paper matched according to the title sent as query param 
 const sendPaper = (req, res) => {
-  
+  const paperTitle = req.query.title;
+
+  const paperPath = getPaperPath(paperTitle);
+
+  res.sendFile(paperPath);
 };
 
-export {searchPaper, addComment};
+export {searchPaper, addComment, recommendPaper, sendPaper};

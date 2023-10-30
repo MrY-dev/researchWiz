@@ -5,4 +5,11 @@ const getPapers = async (searchTerm)=>{
     let result = await db.find({title : {$regex: `${searchTerm}`}});
     return result;
 };
-export { getPapers }
+
+const getPaperPath = async (paperTitle) => {
+  const paperDetail = await PaperModel.find({ title: paperTitle });
+
+  return paperDetail.path;
+};
+
+export default { getPaperPath, getPapers };
