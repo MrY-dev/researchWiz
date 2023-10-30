@@ -1,6 +1,6 @@
 
 // searchPaper string(searchterm) matching title in dbs
-import {getPapers, getPaperPath} from "../services/PaperFunc"
+import {getPapers, getPaperPath} from "../services/paperFunc"
 
 const searchPaper = async (req, res) => {
     let searchTerm = req.query.keyword
