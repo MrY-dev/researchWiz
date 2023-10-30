@@ -26,6 +26,14 @@ const recommendPaper = () => {
 const sendPaper = (req, res) => {
   const paperTitle = req.query.title;
 
+  if (!paperTitle) {
+    res.status(400).json({ message: 'Paper title cannot be empty' })
+  }
+
+  if (paperTitle.trim.length() === 0) {
+
+  }
+
   const paperPath = getPaperPath(paperTitle);
 
   res.sendFile(paperPath);
