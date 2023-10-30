@@ -1,7 +1,17 @@
-import getPaperPath from "../services/paperFunc";
+
+// searchPaper string(searchterm) matching title in dbs
+import {getPapers, getPaperPath} from "../services/PaperFunc"
 
 const searchPaper = async (req, res) => {
-
+    let searchTerm = req.query.keyword
+    if(!searchTerm){
+	res.json("Invalid Input").status(400);
+    }
+    if(searchTerm.trim.length() === 0){
+	res.json("Invalid Input").status(400);
+    }
+    let result = await getPapers(searchTerm);
+    res.json(result).status(200);
 };
 
 const addComment = () => {
