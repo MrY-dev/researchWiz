@@ -8,11 +8,11 @@ const makeApp = async () => {
   const app = express();
   app.use(express.json());
 
-  app.get('/api/search', searchPaper);
+  app.get('/api/paper/search', searchPaper);
   
-  app.post('/api/add-comment', addComment);
+  app.post('/api/paper/add-comment', addComment);
 
-  app.get('/api/send-paper', sendPaper);
+  app.get('/api/paper/send', sendPaper);
 
 
   app.use((err, req, res, next) => {
