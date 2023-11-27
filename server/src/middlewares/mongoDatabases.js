@@ -11,4 +11,12 @@ const paperURI = process.env.MONGO_URI + process.env.PAPERS_DBNAME;
 
 const paperDB = mongoose.createConnection(paperURI);
 
-export { userDB, paperDB  };
+const histURI = process.env.MONGO_URI + process.env.HIST_DBNAME;
+
+const histDB = mongoose.createConnection(histURI);
+
+const commentURI = process.env.MONGO_URI + process.env.COMMENT_DBNAME;
+
+const commentDB = mongoose.createConnection(commentURI);
+
+export { userDB, paperDB, histDB, commentDB };
