@@ -5,7 +5,9 @@
 }
 
 .card:hover {
-  background-color: #f0f0f0;
+  background-color: #f7f1f1;
+  box-shadow: 10px 10px lightblue;
+
 }
 
 .card-title {

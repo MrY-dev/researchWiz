@@ -1,17 +1,17 @@
-* {
+/* * {
     padding: 0;
     margin: 0;
     font-family: sans-serif;
-}
+} */
 
-body {
+/* body {
     width: 100%;
     height: 100vh;
     background-color: #7333bc;
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} */
 
 .box{
     width: 600px;

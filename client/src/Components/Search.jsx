@@ -6,25 +6,6 @@ import RecentPaper from './RecentPaper.jsx';
 import './Search.css'; // Import in Search.jsx
 
 export default function Search() {
-  let selection = document.querySelector(".selection");
-  let selected_text = document.querySelector(".selection p");
-  let categories = document.querySelector(".categories");
-  let options = document.querySelectorAll(".categories p");
-
-
-  selection.onclick = function(){
-      categories.classList.toggle("active");
-  }
-
-  options.forEach(option => {
-      option.onclick = function(){
-          selected_text.innerHTML = option.innerHTML;
-      categories.classList.toggle("active");
-
-      }
-  });
-
-
   const [res, setRes] = useState(responseData);
   const [search, setSearch] = useState('');
 
@@ -70,7 +51,7 @@ export default function Search() {
                 onKeyUp={handleSearch}
               />
             </div>
-            <div className="col-md-2">
+            <div className="col-md-1">
               <select className="form-select" id="filter-dropdown">
                 <option value="option1">Topic</option>
                 <option value="option2">Author</option>

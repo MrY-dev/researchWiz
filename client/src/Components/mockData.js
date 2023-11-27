@@ -1,22 +1,22 @@
-const searchData=[
-    {
-      title:"Machine Learning 1",
-      author:"Mayank",
-      year:1999
-    },  
-    {
-      title:"Machine Learning 2",
-      author:"Kshitiz",
-      year:1997
-    },  
-    {
-      title:"Machine Learning 3",
-      author:"Yaseen",
-      year:1998
-    }
+// const searchData=[
+//     {
+//       title:"Machine Learning 1",
+//       author:"Mayank",
+//       year:1999
+//     },  
+//     {
+//       title:"Machine Learning 2",
+//       author:"Kshitiz",
+//       year:1997
+//     },  
+//     {
+//       title:"Machine Learning 3",
+//       author:"Yaseen",
+//       year:1998
+//     }
 
-]
-
+// ]
+const searchData=[]
 const responseData = [
     {
         title:"Lallu Learning 1",
@@ -36,7 +36,7 @@ const responseData = [
 ]
 const recentSearch = [
         {
-        title:"RecentSearch 1"
+        title:"RecentSearch 1dshgkfhghhhhgjhfgsjhgfjhgfhcvjvchj fbcjbsjhcbdjbvjh dvbbvjhdbvjhbdh jhvbdjhvbhjvbd"
       },  
       {
         title:"RecentSearch 2"

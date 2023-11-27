@@ -7,7 +7,7 @@ export default function SearchResults(props) {
 
   return (
     <div className="container">
-      {props.search.map((item, index) => (
+      {props.search.length === 0 ? <div><p>No results found</p></div> : (props.search.map((item, index) => (
         <div
           className="card mb-3"
           key={index}
@@ -20,7 +20,7 @@ export default function SearchResults(props) {
             <p className="card-text">Year: {item.year}</p>
           </div>
         </div>
-      ))}
+      )))}
     </div>
   );
 }
