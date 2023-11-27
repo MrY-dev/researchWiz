@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { userDB } from '../middlewares/database.js';
+import { userDB } from '../middlewares/mongoDatabases.js';
 
 const { Schema } = mongoose;
 

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { paperDB } from '../middlewares/database.js';
+import { paperDB } from '../middlewares/mongoDatabases.js';
 
 const { Schema } = mongoose;
 
