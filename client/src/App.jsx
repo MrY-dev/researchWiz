@@ -14,7 +14,7 @@ function App() {
       <Route path="/login" element={<Loginpage />}/> 
       <Route path="/signup" element={<Signup />}/> 
       <Route path="/search" element={<Search />}/> 
-      {/* <Route path="/pdfviewer" element={<PDFViewer />}/>  */}
+      <Route path="/pdfviewer" element={<PDFViewer />}/> 
     </Routes>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import './SearchResults.css'; // Import in SearchResults.jsx
 
 export default function SearchResults(props) {
   const handleItemClick = (item) => {

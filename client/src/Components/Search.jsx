@@ -3,8 +3,28 @@ import InnerNavbar from './InnerNavbar.jsx';
 import SearchResults from './SearchResults.jsx';
 import { searchData, responseData } from './mockData.js';
 import RecentPaper from './RecentPaper.jsx';
+import './Search.css'; // Import in Search.jsx
 
 export default function Search() {
+  let selection = document.querySelector(".selection");
+  let selected_text = document.querySelector(".selection p");
+  let categories = document.querySelector(".categories");
+  let options = document.querySelectorAll(".categories p");
+
+
+  selection.onclick = function(){
+      categories.classList.toggle("active");
+  }
+
+  options.forEach(option => {
+      option.onclick = function(){
+          selected_text.innerHTML = option.innerHTML;
+      categories.classList.toggle("active");
+
+      }
+  });
+
+
   const [res, setRes] = useState(responseData);
   const [search, setSearch] = useState('');
 
@@ -52,9 +72,9 @@ export default function Search() {
             </div>
             <div className="col-md-2">
               <select className="form-select" id="filter-dropdown">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
+                <option value="option1">Topic</option>
+                <option value="option2">Author</option>
+                <option value="option3">Year</option>
               </select>
             </div>
             <div className="col-md-2">
