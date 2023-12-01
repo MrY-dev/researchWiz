@@ -1,15 +1,14 @@
 import mongoose from 'mongoose';
-import { userDB } from '../middlewares/mongoDatabases.js';
+import { histDB } from '../middlewares/mongoDatabases';
 
 const { Schema } = mongoose;
 
-const UserSchema = new Schema(
+const HistSchema = new Schema(
     {
-        name: { type: String, required: true },
         email: { type: String, required: true },
-        password: { type: String, required: true },
+        history: { type: Array, required: true },
     }, 
     { timestamps: true }
 );
 
-export default UserSchema;
+export default HistSchema;
