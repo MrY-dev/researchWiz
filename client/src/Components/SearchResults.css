@@ -1,0 +1,19 @@
+/* SearchResults.css */
+.card {
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.card:hover {
+  background-color: #f7f1f1;
+  box-shadow: 10px 10px lightblue;
+
+}
+
+.card-title {
+  font-weight: bold;
+}
+
+.card-text {
+  margin-bottom: 5px;
+}

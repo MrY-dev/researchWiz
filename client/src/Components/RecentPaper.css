@@ -1,0 +1,77 @@
+/* RecentPaper.css
+.container h3 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .col p {
+    margin: 10px 0;
+  }
+   */
+   /* RecentPaper.css */
+/* Add your desired styles for the RecentPaper component */
+/* RecentPaper.css */
+/* #rec h3 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+#rec {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #63b6e3;
+    justify-content: center; 
+    align-items: center; 
+  }
+  
+  #columnrec div {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    margin: 0;
+    color: #333;
+  }
+  
+  #columnrec div:last-child {
+    border-bottom: none;
+  }
+   */
+  /* RecentPaper.css */
+
+#rec {
+    display: flex;
+    flex-direction: column; /* Arrange items in a column */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+    border: 3px solid #c36969;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #63b6e3;
+    margin-top: 20px;
+    margin-left: 50px;
+    box-shadow: 10px 10px lightblue;
+
+  }
+  
+  #columnrec div a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    color: #333;
+    margin: 0;
+    padding: 10px 0;
+  }
+  
+  /* Style all direct children of #columnrec */
+  #columnrec > * {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    width: 100%;
+  }
+  
+  #columnrec > *:last-child {
+    border-bottom: none;
+  }
+  
