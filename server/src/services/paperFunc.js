@@ -1,8 +1,10 @@
 import PaperModel from "../models/PaperSchema.js"
 
-const getPapers = async (searchTerm)=>{
+const getPapers = async (searchTerm,filter)=>{
     const db = PaperModel;
-    let result = await db.find({title : {$regex: `${searchTerm}`}});
+    let dbquery;
+    dbquery[filter] = filter;
+    let result = await db.find({ dbquery : {$regex: `${searchTerm}`}});
     return result;
 };
 
