@@ -1,13 +1,13 @@
 import mongoose from 'mongoose';
-import { userDB } from '../middlewares/mongoDatabases.js';
+import { commentDB } from '../middlewares/mongoDatabases.js';
 
 const { Schema } = mongoose;
 
-const UserSchema = new Schema(
+const CommentSchema = new Schema(
     {
-        name: { type: String, required: true },
+        paper_id: { type: String, required: true },
         email: { type: String, required: true },
-        password: { type: String, required: true },
+        comments: { type: Array },
     }, 
     { timestamps: true }
 );
