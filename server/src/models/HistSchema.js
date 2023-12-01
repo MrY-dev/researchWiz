@@ -11,4 +11,6 @@ const HistSchema = new Schema(
     { timestamps: true }
 );
 
-export default HistSchema;
+const HistModel = histDB.model('HistSchema', HistSchema);
+
+export default HistModel;

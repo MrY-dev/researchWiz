@@ -12,4 +12,6 @@ const CommentSchema = new Schema(
     { timestamps: true }
 );
 
-export default UserSchema;
+const CommentModel = commentDB.model('CommentModel', CommentSchema);
+
+export default CommentModel;
