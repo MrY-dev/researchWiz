@@ -14,8 +14,7 @@ const getPaperPath = async (paperTitle) => {
 };
 
 const recPaper = async(email) => {
-    const db = PaperModel;
-    return result;
+    const db = PaperModel; return result;
 };
 
 export { getPaperPath, getPapers , recPaper};

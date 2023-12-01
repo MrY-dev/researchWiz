@@ -1,4 +1,5 @@
 import HistModel  from "../models/HistSchema.js";
+import PaperModel from "../models/PaperSchema.js";
 import CommentModel from "../models/CommentSchema.js"
 
 const addComments = async(email,comment) => {
@@ -17,16 +18,33 @@ const addComments = async(email,comment) => {
 
 const addHistory = async(email,history) => {
     const db = HistModel; 
-    try{
-        await db.updateOne(
-            {email: email},
-            {$push : { history : history}}
-        )
-        return true;
+    const paperdb = PaperModel;
+
+    let dbquery = await paperdb.find({
+        "email" : email,
+        "title" : history,
+    });
+    if(dbquery){
+        try{
+            await db.updateOne({
+                "email" : email,
+                "paper_id" : paperid,
+                createdAt: new Date(),
+            })
+            return true;
+        }
+        catch(err){
+            return false;
+        }
     }
-    catch(err){
-        return false;
-    }
+
+    let paperid = dbquery.paper_id;
+    db.updateOne({
+        "email": email,
+        "paper_id": paperid,
+        updatedAt: new Date(),
+    });
 };
 
-export {  addComments , addHistory};
+export {  addComments , addHistory  };
+
