@@ -4,18 +4,19 @@ import { getPaperPath, getPapers } from "../services/paperFunc.js"
 
 const searchPaper = async (req, res) => {
     let searchTerm = req.query.keyword
+    let filter = req.query.filter
     if(!searchTerm){
-	res.json("Invalid Input").status(400);
+        res.json("Invalid Input").status(400);
     }
     if(searchTerm.trim.length() === 0){
-	res.json("Invalid Input").status(400);
+        res.json("Invalid Input").status(400);
     }
-    let result = await getPapers(searchTerm);
+    let result = await getPapers(searchTerm,filter);
     res.json(result).status(200);
 };
 
 const addComment = () => {
-
+    
 };
 
 const recommendPaper = () => {
