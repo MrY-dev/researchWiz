@@ -10,8 +10,12 @@ const getPapers = async (searchTerm,filter)=>{
 
 const getPaperPath = async (paperTitle) => {
   const paperDetail = await PaperModel.find({ title: paperTitle });
-
   return paperDetail.path;
 };
 
-export { getPaperPath, getPapers };
+const recPaper = async(email) => {
+    const db = PaperModel;
+    return result;
+};
+
+export { getPaperPath, getPapers , recPaper};
