@@ -46,5 +46,9 @@ const addHistory = async(email,history) => {
     });
 };
 
-export {  addComments , addHistory  };
+const getHistory = async(email) => {
+
+}
+
+export {  getHistory , addComments , addHistory  };
 

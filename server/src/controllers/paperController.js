@@ -1,7 +1,7 @@
 
 // searchPaper string(searchterm) matching title in dbs
 import { getPaperPath, getPapers , recPaper } from "../services/paperFunc.js"
-import { addComments, addHistory } from "../services/userFunc.js"
+import { addComments } from "../services/userFunc.js"
 
 //serachPaper searching for paper based on filter in dbs from frontend   
 const searchPaper = async (req, res) => {
@@ -58,18 +58,6 @@ const recommendPaper = async(req,res) => {
 
 //post
 //addHist using emal and addHist based on email from frontend
-const addHist = async(req,res) => {
-    let history = req.body.history;
-    let email = req.body.email;
-    if(!history || !email){
-        res.json("Invalid Input").status(400);
-    }
-    if(history.trim.length() === 0 || email.trim.length() === 0){
-        res.json("Invalid Input").status(400);
-    }
-    let result = await addHistory(email,history);
-    res.json(result).status(200);
-}
 
 // Send the paper matched according to the title sent as query param 
 const sendPaper = (req, res) => {
@@ -84,8 +72,7 @@ const sendPaper = (req, res) => {
   }
 
   const paperPath = getPaperPath(paperTitle);
-
   res.sendFile(paperPath);
 };
 
-export {searchPaper, addComment, recommendPaper, sendPaper, addHist };
+export {searchPaper, addComment, recommendPaper, sendPaper  };

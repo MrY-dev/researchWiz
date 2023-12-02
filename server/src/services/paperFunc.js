@@ -9,7 +9,11 @@ const getPapers = async (searchTerm,filter)=>{
     let dbquery;
     dbquery[filter] = filter;
     let result = await db.find({ dbquery : {$regex: `${searchTerm}`}});
-    return result;
+    let status = "OK";
+    if(!result){
+        status = "BAD"
+    }
+    return {result,status};
 };
 
 const getPaperPath = async (paperTitle) => {
@@ -26,6 +30,7 @@ const recPaper = async(email) => {
     }).sort({'timestamp' : '-1'}).limit(5);
 
     let comments = [];
+
     for(let i in hist){
         let comm = await commdb.find({
             "email" :  email,
@@ -42,14 +47,17 @@ const recPaper = async(email) => {
     let keyword_values = []; // extract keywords from string
     for(let obj_word in raw_keys){
         keyword_values.push(obj_word["raw"]);
-
     }
-    let result = await db.find({
+    let status = "OK";
+    let dbresult = await db.find({
         "keywords" : {
             "$in" : keyword_values
         }
     })
-    return result;
+    if(!dbresult){
+        status = "bad";
+    }
+    return { dbresult , status };
 };
 
 export { getPaperPath, getPapers , recPaper};
