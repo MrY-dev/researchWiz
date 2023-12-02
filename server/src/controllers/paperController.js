@@ -1,5 +1,3 @@
-
-// searchPaper string(searchterm) matching title in dbs
 import { getPaperPath, getPapers , recPaper } from "../services/paperFunc.js"
 import { addComments } from "../services/userFunc.js"
 
@@ -7,13 +5,12 @@ import { addComments } from "../services/userFunc.js"
 const searchPaper = async (req, res) => {
     let searchTerm = req.query.keyword
     let filter = req.query.filter
-    console.log(searchTerm)
-    console.log(filter)
     if(!searchTerm){
         res.status(400).json("Invalid Input")
         return;
     }
-    if(searchTerm.trim.length === 0){
+    if(searchTerm.trim().length === 0){
+        console.log(searchTerm + "hello")
        res.status(400).json("Invalid Input");
         return;
     }
@@ -23,7 +20,6 @@ const searchPaper = async (req, res) => {
         return;
     }
     let result = await getPapers(searchTerm,filter);
-    console.log(result)
     res.status(200).json(result);
     return;
 };
@@ -31,17 +27,18 @@ const searchPaper = async (req, res) => {
 //post
 //addComment using email and comment based on email  from frontend
 const addComment = async(req,res) => {
-    let comment = req.body.comment;
-    let email = req.body.email;
+    let comment = req.body['comment'];
+    let email = req.body['email'];
+    let paper_id = req.body['paper_id'];
     if(!comment || !email){
         res.status(400).json("Invalid Input");
         return;
     }
-    if(comment.trim.length === 0 || email.trim.length === 0){
+    if(comment.trim().length === 0 || email.trim().length === 0){
         res.status(400).json("Invalid Input");
         return;
     }
-    let result = await addComments(email,comment) ;
+    let result = await addComments(email,comment,paper_id) ;
     if(!result){
         res.status(400).json("unsucessful");
         return;
@@ -53,12 +50,14 @@ const addComment = async(req,res) => {
 //get
 //recommendPaper using email through history and comments
 const recommendPaper = async(req,res) => {
-    let email = req.body.email;
+    let email = req.query.email;
+    console.log(email);
+    return ;
     if(!email){
         res.status(400).json("Invalid Input");
         return;
     }
-    if(!email.trim.length === 0){
+    if(email.trim().length === 0){
         res.status(400).json("Invalid Input");
         return;
     }
@@ -83,7 +82,7 @@ const sendPaper = (req, res) => {
         return;
   }
 
-  if (paperTitle.trim.length === 0) {
+  if (paperTitle.trim().length === 0) {
     res.status(400).json({ message: 'Paper title cannot be empty' })
         return;
   }
