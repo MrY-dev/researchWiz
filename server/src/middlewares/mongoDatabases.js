@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-const userURI = process.env.MONGO_URI + process.env.PAPERS_DBNAME;
+const userURI = process.env.MONGO_URI + process.env.USER_DBNAME;
 
 const userDB = mongoose.createConnection(userURI);
 

@@ -1,0 +1,21 @@
+  .comment {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Add margin between comments */
+    padding: 10px 0; /* Add padding to the comment container */ /* Add margin between comments */
+    overflow-y: auto;
+  }
+  
+  .comment-border {
+    flex: 1;
+    border-top: 1px solid #ddd; /* Top border */
+    border-bottom: 1px solid #ddd; /* Bottom border */
+  }
+  
+  .comment-content {
+    flex: 8;
+    max-width: 400px; /* Set the desired fixed width */
+    padding: 0 10px; /* Add padding to the comment content */
+    overflow-wrap: break-word;
+  }
+  

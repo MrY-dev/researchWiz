@@ -50,7 +50,7 @@ const cmntList = [
   {
     paper_id: 'qwksfjgvsd120',
     email: 'swaz@gmail.com',
-    comments: [ 'Super helpful comment 1', 'Great comment 1', 'Very looooooooooooooooooooooooong descriptive comments 1 osdjfnsdifjnsmdfjnISFJNiusonisdnfkjsdnfkjsfnsdfkljsdnmcjsldknsdovijsdovijnsdjvnsdkvjn' ]
+    comments: [ 'Super helpful comment 1', 'Great comment 1', 'Very looooooooooooooooooooooooong descriptive comments 1 osdjfnsdifjnsmdfjnISFJN iusonisdnfkjsdnfkjs fnsdfkljsdnmcjsldkv nsdovijsdovijnsdjvnsdkvjn' ]
   },
   {
     paper_id: 'eskdfksfkaw',

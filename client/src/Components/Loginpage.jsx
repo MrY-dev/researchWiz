@@ -12,7 +12,7 @@ export default function Loginpage() {
           <p className="sign" align="center">
             Sign in
           </p>
-          <form className="form1">
+          <form className="form1" method="POST">
             <input
               className="un"
               type="email"
