@@ -1,29 +1,32 @@
-import React, { useState } from 'react';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { useState, useEffect } from 'react';
 
-// Create styles
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: 'row',
-    backgroundColor: '#E4E4E4'
-  },
-  section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1
-  }
-});
+export default function PDFViewer() {
+  const [pdfUrl, setPdfUrl] = useState(null);
 
-// Create Document Component
-export function PDFViewer {
-  <Document>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Text>Section #1</Text>
-      </View>
-      <View style={styles.section}>
-        <Text>Section #2</Text>
-      </View>
-    </Page>
-  </Document>
-);
+  useEffect(() => {
+    const fetchPdf = async () => {
+      try {
+        const response = 'great'
+        const pdfBlob = await response.blob();
+        const pdfObjectURL = URL.createObjectURL(pdfBlob);
+        setPdfUrl(pdfObjectURL);
+      } catch (error) {
+        console.error('Error fetching PDF:', error);
+      }
+    };
+
+    fetchPdf();
+  }, []);
+
+  return (
+    <div>
+      <h1>PDF Viewer</h1>
+      <p>Here is the embedded PDF:</p>
+      pdfUrl && (
+        <iframe src={pdfUrl} width="100%" height="600px" title="Embedded PDF"></iframe>
+      )
+
+      {/* <iframe src="./Exam Rules-2023.pdf" width="100%" height="600px" title="Embedded PDF"></iframe> */}
+    </div>
+  );
+}
