@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
-import { Document, Page } from 'react-pdf';
+import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
-export default function PDFViewer() {
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
+// Create styles
+const styles = StyleSheet.create({
+  page: {
+    flexDirection: 'row',
+    backgroundColor: '#E4E4E4'
+  },
+  section: {
+    margin: 10,
+    padding: 10,
+    flexGrow: 1
+  }
+});
 
-  const onDocumentLoadSuccess = ({ numPages }) => {
-    setNumPages(numPages);
-  };
-
-  return (
-    <div style={{ overflowY: 'auto', height: '500px' }}> {/* Adjust height as needed */}
-      <Document
-        file="./Exam Rules-2023.pdf" // Replace 'your_pdf_file.pdf' with your PDF file path
-        onLoadSuccess={onDocumentLoadSuccess}
-      >
-        <Page pageNumber={pageNumber} />
-      </Document>
-      <p>Page {pageNumber} of {numPages}</p>
-      <button onClick={() => setPageNumber(pageNumber - 1)} disabled={pageNumber <= 1}>
-        Previous
-      </button>
-      <button onClick={() => setPageNumber(pageNumber + 1)} disabled={pageNumber >= numPages}>
-        Next
-      </button>
-    </div>
-  );
-}
+// Create Document Component
+export function PDFViewer {
+  <Document>
+    <Page size="A4" style={styles.page}>
+      <View style={styles.section}>
+        <Text>Section #1</Text>
+      </View>
+      <View style={styles.section}>
+        <Text>Section #2</Text>
+      </View>
+    </Page>
+  </Document>
+);
