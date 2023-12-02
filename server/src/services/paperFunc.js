@@ -6,11 +6,9 @@ import keyword_extractor from  "keyword-extractor"
 
 const getPapers = async (searchTerm,filter)=>{
     const db = PaperModel;
-    let dbquery;
-    dbquery[filter] = filter;
-    let result = await db.papermodel.find({ dbquery : {$regex: searchTerm}});
-    console.log("fromgetPaper")
-    console.log(result)
+    console.log(filter)
+    console.log(searchTerm)
+    let result = await db.find({ [`${filter}`] : {$regex: searchTerm,}});
     let status = "OK";
     if(!result){
         status = "BAD"
@@ -30,16 +28,16 @@ const recPaper = async(email) => {
 
     let hist = await histdb.find({
         "email" : email 
-    }).sort({'timestamp' : '-1'}).limit(5);
-
+    },).sort({'timestamp' : '-1'}).limit(5);
+    console.log(hist);
     let comments = [];
     for(let i in hist){
         let comm = await commdb.find({
             "email" :  email,
             "paper_id" : i.paper_id,
         })
-        for(let i in comm.comments){
-            comments.push(i);
+        for(let j in comm.comments){
+            comments.push(j);
         }
     }
 

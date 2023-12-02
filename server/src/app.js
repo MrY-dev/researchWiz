@@ -27,9 +27,9 @@ const makeApp = async () => {
   app.get('/api/paper/send', sendPaper);
 
   app.use((err, req, res, next) => {
-    console.log(err);
+    //console.log(err);
     res.status(500).send('Something broke');
-    console.log('This is the rejected field ->', err.field);
+    //console.log('This is the rejected field ->', err.field);
     next();
   });
 
