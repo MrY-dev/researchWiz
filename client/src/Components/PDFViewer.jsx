@@ -30,8 +30,6 @@ export default function PDFViewerComponent() {
         {/* Add your comment component and add button here */}
       </div>
       <div className="pdf-container">
-        <h1>PDF Viewer</h1>
-        <p>Here is the embedded PDF:</p>
         {/*pdfUrl && <iframe src={pdfUrl} width="100%" height="100%" title="Embedded PDF"></iframe>*/}
         <iframe src="./Exam Rules-2023.pdf" width="100%" height="600px" title="Embedded PDF"></iframe>
       </div>
