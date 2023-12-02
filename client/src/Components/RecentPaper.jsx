@@ -1,6 +1,7 @@
 // RecentPaper.jsx
 import { useEffect, useState } from 'react';
 import { recentSearch } from './mockData.js';
+import { Link } from 'react-router-dom';
 import './RecentPaper.css'; // Import in RecentPaper.jsx
 
 export default function RecentPaper() {
@@ -20,9 +21,9 @@ export default function RecentPaper() {
           ) : (
             <div>
               {recent.map((paper, index) => (
-                <a key={index} href={paper.link} target="_blank" rel="noopener noreferrer">
+                <Link key={index} to={paper.link} target="_blank" rel="noopener noreferrer" className='rec-clickable'>
                   {paper.title}
-                </a>
+                </Link>
               ))}
             </div>
           )}

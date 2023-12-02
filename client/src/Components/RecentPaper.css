@@ -44,14 +44,13 @@
     flex-direction: column; /* Arrange items in a column */
     justify-content: center; /* Center items vertically */
     align-items: center; /* Center items horizontally */
-    border: 3px solid #c36969;
+    border: 3px solid #a49797;
     border-radius: 5px;
     padding: 10px;
-    background-color: #63b6e3;
+    /* background-color: #63b6e3; */
     margin-top: 20px;
     margin-left: 50px;
-    box-shadow: 10px 10px lightblue;
-
+    box-shadow: 8px 8px lightblue;
   }
   
   #columnrec div a{
@@ -60,7 +59,7 @@
     align-items: center;
     width: 100%;
     color: #333;
-    margin: 0;
+    margin: 4px;
     padding: 10px 0;
   }
   
@@ -73,5 +72,19 @@
   
   #columnrec > *:last-child {
     border-bottom: none;
+  }
+
+  .rec-clickable {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .rec-clickable:hover {
+    background-color: #f0f0f0;
   }
   
