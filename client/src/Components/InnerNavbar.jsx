@@ -16,7 +16,7 @@ export default function InnerNavbar() {
           <Link to="#">
             <li>Graph</li>
           </Link>
-          <Link to="#">
+          <Link to="/userprofile">
             <li>Alert</li>
           </Link>
           <Link to="#">

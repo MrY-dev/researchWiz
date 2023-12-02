@@ -6,6 +6,7 @@ import Loginpage from './Components/Loginpage.jsx';
 import Signup from './Components/Signup.jsx';
 import Search from './Components/Search.jsx';
 import PDFViewer from './Components/PDFViewer.jsx';
+import UserProfile from './Components/UserProfile.jsx';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/signup" element={<Signup />}/> 
       <Route path="/search" element={<Search />}/> 
       <Route path="/pdfviewer" element={<PDFViewer />}/> 
+      <Route path="/userprofile" element={<UserProfile />}/>
     </Routes>
   );
 }
