@@ -1,0 +1,54 @@
+.about-section {
+    padding: 50px 0;
+  }
+
+  .user-profile {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+  }
+
+  .user-profile .row {
+    align-items: center;
+  }
+
+  .user-profile img {
+    max-width: 100%;
+    border-radius: 50%;
+    box-shadow: 0 5px 14px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .user-details {
+    margin-left: 20px;
+  }
+
+  .user-details h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  .user-details p {
+    font-size: 18px;
+  }
+
+  .history-user-profile {
+    padding: 30px;
+    border: 2px solid #ccc;
+    margin-top: 30px;
+  }
+
+  .history-user-profile h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align:center;
+  }
+
+  .history-user-profile ul {
+    list-style: none;
+    padding-left: 20px;
+  }
+
+  .history-user-profile ul li {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }

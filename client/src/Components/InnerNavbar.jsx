@@ -16,8 +16,8 @@ export default function InnerNavbar() {
           <Link to="#">
             <li>Graph</li>
           </Link>
-          <Link to="#">
-            <li>Alerts</li>
+          <Link to="/userprofile">
+            <li>Alert</li>
           </Link>
           <Link to="#">
             {/* Replace the "Profile" text with the User icon */}
