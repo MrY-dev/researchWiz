@@ -1,6 +1,6 @@
 
 // searchPaper string(searchterm) matching title in dbs
-import { getPaperPath, getPapers  } from "../services/paperFunc.js"
+import { getPaperPath, getPapers , recPaper } from "../services/paperFunc.js"
 import { addComments, addHistory } from "../services/userFunc.js"
 
 //serachPaper searching for paper based on filter in dbs from frontend   
@@ -33,11 +33,27 @@ const addComment = async(req,res) => {
         res.json("Invalid Input").status(400);
     }
     let result = await addComments(email,comment) ;
+    if(!result){
+        res.json("unsucessful").status(400);
+    }
     res.json(result).status(200);
 };
 
-const recommendPaper = () => {
-
+//get
+//recommendPaper using email through history and comments
+const recommendPaper = async(req,res) => {
+    let email = req.body.email;
+    if(!email){
+        res.json("Invalid Input").status(400);
+    }
+    if(!email.trim.length() === 0){
+        res.json("Invalid Input").status(400);
+    }
+    let result = await recPaper(email);
+    if(!result){
+        res.json("unsucessful").status(400);
+    }
+    res.json(result).status(200);
 };
 
 //post

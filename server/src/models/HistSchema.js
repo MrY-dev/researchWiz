@@ -5,8 +5,8 @@ const { Schema } = mongoose;
 
 const HistSchema = new Schema(
     {
+        paper_id: { type: String, required: true},
         email: { type: String, required: true },
-        history: { type: Array, required: true },
     }, 
     { timestamps: true }
 );

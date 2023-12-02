@@ -21,7 +21,8 @@
     "husky": "^8.0.3",
     "mongodb": "^6.2.0",
     "mongoose": "^7.6.3",
-    "neo4j-driver": "^5.15.0"
+    "neo4j-driver": "^5.15.0",
+    "yake-wasm": "^1.0.3"
   },
   "devDependencies": {
     "eslint": "^8.52.0",
