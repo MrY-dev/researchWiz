@@ -35,7 +35,7 @@ const responseData = [
       }
 ]
 const recentSearch = [
-        {
+      {
         title:"RecentSearch 1dshgkfhghhhhgjhfgsjhgfjhgfhcvjvchj fbcjbsjhcbdjbvjh dvbbvjhdbvjhbdh jhvbdjhvbhjvbd"
       },  
       {
@@ -46,4 +46,17 @@ const recentSearch = [
       },
 ]
 
-export {searchData, responseData,recentSearch}
+const cmntList = [
+  {
+    paper_id: 'qwksfjgvsd120',
+    email: 'swaz@gmail.com',
+    comments: [ 'Super helpful comment 1', 'Great comment 1', 'Very looooooooooooooooooooooooong descriptive comments 1 osdjfnsdifjnsmdfjnISFJNiusonisdnfkjsdnfkjsfnsdfkljsdnmcjsldknsdovijsdovijnsdjvnsdkvjn' ]
+  },
+  {
+    paper_id: 'eskdfksfkaw',
+    email: 'askjd@gmail.com',
+    comments: [ 'Super helpful comment 2', 'Great comment 2', 'Very looooooooooooooooooooooooong descriptive comments 2 osdjfnsdifjnsmdfjnISFJNiusonisdnfkjsdnfkjsfnsdfkljsdnmcjsldknsdovijsdovijnsdjvnsdkvjn' ]
+  }
+]
+
+export {searchData, responseData,recentSearch, cmntList}
