@@ -1,6 +1,7 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
-import { searchPaper, addComment, sendPaper, addHist } from './controllers/paperController.js';
+import { searchPaper, addComment, sendPaper  } from './controllers/paperController.js';
+import { addHist,getHist ,signupUser,loginUser} from './controllers/userController.js'
 import { recPaper } from './services/paperFunc.js';
 
 dotenv.config();

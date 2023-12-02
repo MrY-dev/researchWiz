@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { histDB } from '../middlewares/mongoDatabases';
+import { histDB } from '../middlewares/mongoDatabases.js';
 
 const { Schema } = mongoose;
 

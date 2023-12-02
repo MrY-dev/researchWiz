@@ -22,4 +22,12 @@ const getHist = async(req,res) => {
     res.json(result).status(200);
 }
 
-export { getHist , addHist }
+const signupUser = async(req,res) => {
+
+}
+
+const loginUser = async(req,res) => {
+
+}
+
+export { getHist , addHist , signupUser , loginUser }
