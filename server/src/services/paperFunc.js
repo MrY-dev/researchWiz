@@ -8,7 +8,9 @@ const getPapers = async (searchTerm,filter)=>{
     const db = PaperModel;
     let dbquery;
     dbquery[filter] = filter;
-    let result = await db.find({ dbquery : {$regex: `${searchTerm}`}});
+    let result = await db.papermodel.find({ dbquery : {$regex: searchTerm}});
+    console.log("fromgetPaper")
+    console.log(result)
     let status = "OK";
     if(!result){
         status = "BAD"

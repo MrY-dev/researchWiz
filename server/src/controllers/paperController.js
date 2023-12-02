@@ -7,18 +7,25 @@ import { addComments } from "../services/userFunc.js"
 const searchPaper = async (req, res) => {
     let searchTerm = req.query.keyword
     let filter = req.query.filter
+    console.log(searchTerm)
+    console.log(filter)
     if(!searchTerm){
-        res.json("Invalid Input").status(400);
+        res.status(400).json("Invalid Input")
+        return;
     }
-    if(searchTerm.trim.length() === 0){
-        res.json("Invalid Input").status(400);
+    if(searchTerm.trim.length === 0){
+       res.status(400).json("Invalid Input");
+        return;
     }
     let possiblefilters = ['title','year','author'];
     if(!possiblefilters.includes(filter)){
-        res.json("Invalid filter").status(400);
+        res.status(400).json("Invalid filter");
+        return;
     }
     let result = await getPapers(searchTerm,filter);
-    res.json(result).status(200);
+    console.log(result)
+    res.status(200).json(result);
+    return;
 };
 
 //post
@@ -27,16 +34,20 @@ const addComment = async(req,res) => {
     let comment = req.body.comment;
     let email = req.body.email;
     if(!comment || !email){
-        res.json("Invalid Input").status(400);
+        res.status(400).json("Invalid Input");
+        return;
     }
-    if(comment.trim.length() === 0 || email.trim.length() === 0){
-        res.json("Invalid Input").status(400);
+    if(comment.trim.length === 0 || email.trim.length === 0){
+        res.status(400).json("Invalid Input");
+        return;
     }
     let result = await addComments(email,comment) ;
     if(!result){
-        res.json("unsucessful").status(400);
+        res.status(400).json("unsucessful");
+        return;
     }
-    res.json(result).status(200);
+    res.status(200).json(result);
+    return;
 };
 
 //get
@@ -44,16 +55,20 @@ const addComment = async(req,res) => {
 const recommendPaper = async(req,res) => {
     let email = req.body.email;
     if(!email){
-        res.json("Invalid Input").status(400);
+        res.status(400).json("Invalid Input");
+        return;
     }
-    if(!email.trim.length() === 0){
-        res.json("Invalid Input").status(400);
+    if(!email.trim.length === 0){
+        res.status(400).json("Invalid Input");
+        return;
     }
     let result = await recPaper(email);
     if(!result){
-        res.json("unsucessful").status(400);
+        res.status(400).json("unsucessful");
+        return;
     }
-    res.json(result).status(200);
+    res.json(result);
+    return;
 };
 
 //post
@@ -65,14 +80,17 @@ const sendPaper = (req, res) => {
 
   if (!paperTitle) {
     res.status(400).json({ message: 'Paper title cannot be empty' })
+        return;
   }
 
-  if (paperTitle.trim.length() === 0) {
+  if (paperTitle.trim.length === 0) {
     res.status(400).json({ message: 'Paper title cannot be empty' })
+        return;
   }
 
   const paperPath = getPaperPath(paperTitle);
   res.sendFile(paperPath);
+    return;
 };
 
 export {searchPaper, addComment, recommendPaper, sendPaper  };

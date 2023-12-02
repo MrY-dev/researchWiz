@@ -6,7 +6,7 @@ const addHist = async(req,res) => {
     if(!history || !email){
         res.json("Invalid Input").status(400);
     }
-    if(history.trim.length() === 0 || email.trim.length() === 0){
+    if(history.trim.length === 0 || email.trim.length === 0){
         res.json("Invalid Input").status(400);
     }
     let result = await addHistory(email,history);
@@ -15,7 +15,7 @@ const addHist = async(req,res) => {
 
 const getHist = async(req,res) => {
     let email = req.query.email;
-    if(!email || email.trim.length() === 0){
+    if(!email || email.trim.length === 0){
         res.json("Invalid Input").status(400);
     }
     let result = await getHistory(email);
