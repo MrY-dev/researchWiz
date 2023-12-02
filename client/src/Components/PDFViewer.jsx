@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
+import './PDFViewer.css';
+import InnerNavbar from './InnerNavbar';
 
-export default function PDFViewer() {
+export default function PDFViewerComponent() {
   const [pdfUrl, setPdfUrl] = useState(null);
 
   useEffect(() => {
     const fetchPdf = async () => {
       try {
-        const response = 'great'
+        // Replace 'great' with your actual PDF endpoint
+        const response = await fetch('great');
         const pdfBlob = await response.blob();
         const pdfObjectURL = URL.createObjectURL(pdfBlob);
         setPdfUrl(pdfObjectURL);
@@ -20,13 +23,19 @@ export default function PDFViewer() {
 
   return (
     <div>
-      <h1>PDF Viewer</h1>
-      <p>Here is the embedded PDF:</p>
-      pdfUrl && (
-        <iframe src={pdfUrl} width="100%" height="600px" title="Embedded PDF"></iframe>
-      )
-
-      {/* <iframe src="./Exam Rules-2023.pdf" width="100%" height="600px" title="Embedded PDF"></iframe> */}
+    <InnerNavbar />
+    <div className="pdf-page-container">
+      <div className="comments-container">
+        <h2>Comments Section</h2>
+        {/* Add your comment component and add button here */}
+      </div>
+      <div className="pdf-container">
+        <h1>PDF Viewer</h1>
+        <p>Here is the embedded PDF:</p>
+        {/*pdfUrl && <iframe src={pdfUrl} width="100%" height="100%" title="Embedded PDF"></iframe>*/}
+        <iframe src="./Exam Rules-2023.pdf" width="100%" height="600px" title="Embedded PDF"></iframe>
+      </div>
+    </div>
     </div>
   );
 }
