@@ -30,6 +30,7 @@ export default function PDFViewerComponent() {
       <div className="comments-container">
         <h2>Comments</h2>
         <CommentList comments={cmntList[0].comments}/>
+        <button className="add-comment-button">+</button>
       </div>
       <div className="pdf-container">
         {pdfUrl && <iframe src={pdfUrl} width="100%" height="100%" title="Embedded PDF"></iframe>}

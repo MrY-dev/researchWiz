@@ -10,11 +10,14 @@ export default function InnerNavbar() {
           <b>ResearchWiz</b>
         </Link>
         <ul className="links">
-          <Link to="#">
+          <Link to="/">
             <li>Home</li>
           </Link>
           <Link to="#">
             <li>Graph</li>
+          </Link>
+          <Link to="#">
+            <li>Alerts</li>
           </Link>
           <Link to="#">
             {/* Replace the "Profile" text with the User icon */}
