@@ -1,7 +1,6 @@
 import PaperModel from "../models/PaperSchema.js"
 import HistModel from "../models/HistSchema.js"
 import CommentModel from "../models/CommentSchema.js"
-//import { Yake } from "yake-wasm"
 import keyword_extractor from  "keyword-extractor"
 
 
@@ -41,20 +40,14 @@ const recPaper = async(email) => {
             comments.push(i);
         }
     }
-    // create yake new instance
-    //const instance = new Yake(); 
-    //const in_string = comments.join(" ");
-    //const raw_keys  = instance.get_n_best(in_string);
-    let keyword_values = []; // extract keywords from string
-    keyword_values = keyword_extractor.extract(in_string,{
+
+   const in_string = comments.join(" ");
+   const keyword_values = keyword_extractor.extract(in_string,{
         language: "english",
         remove_digits : true,
         return_changed_case: true,
         remove_duplicates: true,
     })
-    //for(let obj_word in raw_keys){
-     //   keyword_values.push(obj_word["raw"]);
-    //}
     let status = "OK";
     let dbresult = await db.find({
         "keywords" : {
