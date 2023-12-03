@@ -3,12 +3,25 @@ import { useParams } from 'react-router-dom';
 import './PDFViewer.css';
 import CommentList from './CommentList.jsx';
 import InnerNavbar from './InnerNavbar.jsx';
-import { cmntList } from './mockData.js';
 import getPaperAPI from '../API/getPaperAPI.js';
+import getCommentAPI from '../API/getCommentAPI.js';
 
 export default function PDFViewerComponent() {
   const { title } = useParams();
   const [pdfUrl, setPdfUrl] = useState('');
+  const [commList, setComList] = useState([]);
+
+  useEffect(() => {
+    const fetchComm = async () => {
+      const response = await getCommentAPI({ paper_id: paperId, email: email });
+        if (response.statusCode === 200) {
+          setComList(response.data);
+        } else {
+          setComList([]);
+        }
+        fetchComm();  
+    };
+  }, []);
 
   useEffect(() => {
     const fetchPdf = async () => {
@@ -31,7 +44,7 @@ export default function PDFViewerComponent() {
     <div className="pdf-page-container">
       <div className="comments-container">
         <h2>Comments</h2>
-        <CommentList comments={cmntList[0].comments}/>
+        <CommentList comments={commList}/>
         <button className="add-comment-button">+</button>
       </div>
       <div className="pdf-container">
