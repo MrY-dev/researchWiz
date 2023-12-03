@@ -42,7 +42,8 @@ export default function Signup() {
     e.preventDefault();
     if (password === confirmPassword) {
       // Passwords match, proceed with signup
-      const response = signUserAPI({ name: userName, password, email: userEmail });
+      const response = await signUserAPI({ name: userName, password, email: userEmail });
+      console.log(response)
       if (response.statusCode === 200){
         navigate('/');
       }
