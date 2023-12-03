@@ -7,7 +7,7 @@ import getPaperAPI from '../API/getPaperAPI.js';
 import getCommentAPI from '../API/getCommentAPI.js';
 
 export default function PDFViewerComponent() {
-  const { title } = useParams();
+  const { paperid } = useParams();
   const [pdfUrl, setPdfUrl] = useState('');
   const [commList, setComList] = useState([]);
 
@@ -29,7 +29,7 @@ export default function PDFViewerComponent() {
   useEffect(() => {
     const fetchPdf = async () => {
       try {
-        const response = await getPaperAPI({ title });
+        const response = await getPaperAPI({ paperid });
         const pdfBlob = await response.blob();
         const pdfObjectURL = URL.createObjectURL(pdfBlob);
         setPdfUrl(pdfObjectURL);
@@ -39,7 +39,7 @@ export default function PDFViewerComponent() {
     };
 
     fetchPdf();
-  }, [title]);
+  }, [paperid]);
 
   return (
     <div>

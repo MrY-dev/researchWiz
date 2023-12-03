@@ -16,7 +16,7 @@ function App() {
       <Route path="/login" element={<Loginpage />}/> 
       <Route path="/signup" element={<Signup />}/> 
       <Route path="/search" element={<Search />}/> 
-      <Route path="/pdfviewer/:title" element={<PDFViewer />}/> 
+      <Route path="/pdfviewer/:paperid" element={<PDFViewer />}/> 
       <Route path="/userprofile" element={<UserProfile />}/>
       <Route path="/graph" element={<KnowledgeGraph context="universal" />}/>
     </Routes>
