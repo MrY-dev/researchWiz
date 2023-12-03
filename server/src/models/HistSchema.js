@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 const HistSchema = new Schema(
     {
-        paper_id: { type: mongoose.Types.ObjectId, required: true},
+        paperid: { type: mongoose.Types.ObjectId, required: true},
         email: { type: String, required: true },
     }, 
     { timestamps: true }

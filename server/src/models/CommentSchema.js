@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 const CommentSchema = new Schema(
     {
-        paper_id: { type: mongoose.Types.ObjectId, required: true },
+        paperid: { type: mongoose.Types.ObjectId, required: true },
         email: { type: String, required: true },
         comments: { type: Array },
     }, 

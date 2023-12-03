@@ -7,7 +7,7 @@ const addComments = async(email,comment,paperid) => {
     const db = CommentModel;
     try {
         await db.updateOne(
-            {email : email, paper_id : paperid},
+            {email : email, paperid : paperid},
             {$push : { comments : comment}},
             {upsert: true})
         return true;
@@ -22,7 +22,7 @@ const addHistory = async(email,paperid) => {
 
     let dbquery = await db.find({
         "email" : email,
-        "paper_id" : paperid,
+        "paperid" : paperid,
     });
     
     console.log(dbquery.length)
@@ -30,7 +30,7 @@ const addHistory = async(email,paperid) => {
         try{
             await db.create({
                 "email" : email,
-                "paper_id" : paperid,
+                "paperid" : paperid,
             })
             return true;
         }
@@ -41,7 +41,7 @@ const addHistory = async(email,paperid) => {
 
     await db.updateOne({
         "email": email,
-        "paper_id": paperid,
+        "paperid": paperid,
         updatedAt: new Date(),
     });
 
@@ -58,10 +58,10 @@ const getHistory = async(email) => {
     let p_res = {}
     for(i in query){
         try {
-            p_res = await db.findOne({paper_id: i.paper_id});
+            p_res = await db.findOne({paperid: i.paperid});
             result.push(p_res.title);
         } catch (err) {
-            console.log(`Fetching of ${i.paper_id} failed`);
+            console.log(`Fetching of ${i.paperid} failed`);
         }
     }
 

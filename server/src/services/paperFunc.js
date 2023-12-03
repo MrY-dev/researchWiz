@@ -40,7 +40,7 @@ const recPaper = async(email) => {
     for(let i in hist){
         let comm = await commdb.find({
             "email" :  email,
-            "paper_id" : hist[i]['paper_id'],
+            "paperid" : hist[i]['paperid'],
         })
         console.log('does this work');
         for (let j in comm[0]['comments']){
@@ -53,7 +53,7 @@ const recPaper = async(email) => {
         let hist_keywords = [];
         for(let i in hist){
             let paper = await db.find({
-                "paper_id" : hist[i]['paper_id']
+                "paperid" : hist[i]['paperid']
             })
             for(let i in paper['keywords']){
                 hist_keywords.push(paper['keywords'][i])
