@@ -11,6 +11,9 @@ export default function PDFViewerComponent() {
   const [pdfUrl, setPdfUrl] = useState('');
   const [commList, setComList] = useState([]);
 
+  const email = localStorage.getItem('email');
+  const paperId = localStorage.getItem('selectedPaperId');
+
   useEffect(() => {
     const fetchComm = async () => {
       const response = await getCommentAPI({ paper_id: paperId, email: email });
@@ -19,9 +22,9 @@ export default function PDFViewerComponent() {
         } else {
           setComList([]);
         }
-        fetchComm();  
-    };
-  }, []);
+      };
+      fetchComm();  
+    }, [email, paperId]);
 
   useEffect(() => {
     const fetchPdf = async () => {

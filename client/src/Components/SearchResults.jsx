@@ -3,8 +3,14 @@ import './SearchResults.css';
 import addToHistAPI from '../API/addToHistAPI';
 
 export default function SearchResults(props) {
-  const handleClick = async (e) => {
-    const response = await addToHistAPI({ email: email, paper_id: paperId });
+  const email = localStorage.getItem('email');
+
+  const handleClick = async (item) => {
+    const { paper_id } = item;
+
+    localStorage.setItem('selectedPaperId', paper_id);
+
+    const response = await addToHistAPI({ email: email, paper_id });
     if (response !== 200) {
       console.log('Failed at adding paper to history.');
     }
@@ -17,7 +23,7 @@ export default function SearchResults(props) {
           to={`/pdfviewer/${encodeURIComponent(item.title)}`}
           className="card mb-3"
           key={index}
-          onClick={handleClick}
+          onClick={() => handleClick(item)}
           style={{ cursor: 'pointer' }}
         >
           <div className="card-body">

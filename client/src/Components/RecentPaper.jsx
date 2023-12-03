@@ -7,6 +7,8 @@ import getRecentAPI from '../API/getRecentAPI.js';
 export default function RecentPaper() {
   const [recent, setRecent] = useState([]);
 
+  const email = localStorage.getItem('email');
+
   useEffect(() => {
     const fetchRecent = async () => {
       const response = await getRecentAPI({ email: email });
@@ -18,7 +20,7 @@ export default function RecentPaper() {
     setRecent();
     }
     fetchRecent();
-  }, []);
+  }, [email]);
 
   return (
     <div className="container mt-4" id="rec">

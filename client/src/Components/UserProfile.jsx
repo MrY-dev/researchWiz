@@ -8,6 +8,8 @@ export default function UserProfile() {
   const [userName, setUserName] = useState('');
   const [userHist, setUserHist] = useState([]);
 
+  const email = localStorage.getItem('email');
+
   useEffect(() => {
     const fetchUName = async () => {
       const response = await getUserNameAPI({ email });
@@ -18,7 +20,7 @@ export default function UserProfile() {
         }
     };
     fetchUName();
-  }, []);
+  }, [email]);
 
   useEffect(() => {
     const fetchHist = async () => {
@@ -30,7 +32,7 @@ export default function UserProfile() {
         }
     };
     fetchHist();
-  }, []);
+  }, [email]);
 
   return (
     <div className='userprofile'>
