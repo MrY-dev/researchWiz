@@ -1,8 +1,7 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
-import { searchPaper, addComment, sendPaper  } from './controllers/paperController.js';
+import { searchPaper, addComment, sendPaper ,recommendPaper } from './controllers/paperController.js';
 import { addHist,getHist ,signupUser,loginUser} from './controllers/userController.js'
-import { recPaper } from './services/paperFunc.js';
 
 dotenv.config();
 
@@ -22,7 +21,7 @@ const makeApp = async () => {
   
   app.post('/api/paper/add-comment', addComment);
 
-  app.get('/api/paper/recom-paper', recPaper);
+  app.get('/api/paper/recom-paper', recommendPaper);
 
   app.get('/api/paper/send', sendPaper);
 
