@@ -36,10 +36,27 @@ ResearchWiz solves this problem by
         Neo4j's graph structure directly models relationships between users and papers read by them
         As recommendations has to be provided based on users historical reads,item similarities Neo4j is used. 
 
+## Execution
 
+To run this project, first get the dependencies by:
 
+```
+    cd client/
+    npm install
+    cd ../server
+    npm install
+```
 
+Then build the client side code (go to client directory):
 
-    
-    
+```
+    cd client/
+    npm run build
+```
 
+Now to run the project go to the server and run the server:
+
+```
+    cd server/
+    npm run dev
+```
