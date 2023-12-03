@@ -2,6 +2,7 @@ import * as dotenv from 'dotenv';
 import express from 'express';
 import { searchPaper, addComment, sendPaper ,recommendPaper , recentPaper} from './controllers/paperController.js';
 import { addHist,getHist ,signupUser,loginUser} from './controllers/userController.js'
+import buildMiddleware from './middlewares/buildMiddleware.js';
 
 dotenv.config();
 
@@ -30,6 +31,8 @@ const makeApp = async () => {
   app.get('/api/paper/send', sendPaper);
 
   app.get('/api/user/get-cred', neoCred);
+
+  buildMiddleware();
 
   app.use((err, req, res, next) => {
     //console.log(err);
