@@ -1,44 +1,46 @@
-import { useEffect, useState } from 'react';
-import { Network } from 'react-graph-vis';
-import { runCypherQuery } from '../API/neo4jServiceAPI.js';
+import { useEffect } from 'react';
+import neo4j from 'neovis.js';
+import getCredAPI from '../API/getCredAPI.js';
 
-export default function KnowledgeGraph({ context }) {
-  const [graph, setGraph] = useState({ nodes: [], edges: [] });
-
+export default function KnowledgeGraph() {
   useEffect(() => {
-    const fetchGraphData = async () => {
-      try {
-        let cypherQuery;
-
-        if (context === 'search') {
-          // Cypher query for history of papers read by the user
-          cypherQuery = 'MATCH ... RETURN ...';
-        } else if (context === 'pdfViewer') {
-          // Cypher query for papers related to the current paper
-          cypherQuery = 'MATCH ... RETURN ...'; 
-        }
-
-        const graphData = await runCypherQuery(cypherQuery);
-        setGraph({
-          nodes: graphData.nodes.map(node => ({ id: node.id, label: node.label })),
-          edges: graphData.edges.map(edge => ({ from: edge.from, to: edge.to, label: edge.label })),
-        });
-      } catch (error) {
-        console.error('Error fetching graph data:', error);
+    let userName = ''; 
+    let passWrd = '';
+    const fneocred = async () => {
+      const response = await getCredAPI();
+      if (response.statusCode !== 200) {
+        console.log('Error! Could not get Graph');
+      } else {
+        userName = response.data.user;
+        passWrd = response.data.password;
       }
+    }
+    fneocred();
+
+    // Create a new instance of neovis
+    const config = {
+      container_id: 'neo4j-container',
+      server_url: 'bolt://localhost:7687',
+      server_user: userName,
+      server_password: passWrd,
+      labels: {
+        Node: {
+          caption: 'name', // Change to your node property
+        },
+      },
+      relationships: {
+        LINKS: {
+          thickness: 'weight', // Change to your relationship property
+        },
+      },
     };
 
-    fetchGraphData();
-  }, [context]);
+    const vis = new neo4j(config);
 
-  const options = {
-    layout: {
-      hierarchical: false,
-    },
-    edges: {
-      color: '#000000',
-    },
-  };
+    // Initialize the visualization
+    vis.render();
+  }, []); // Run the effect only once when the component mounts
 
-  return <Network graph={graph} options={options} />;
+  return <div id="neo4j-container" style={{ width: '100%', height: '500px' }} />;
 };
+

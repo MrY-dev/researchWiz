@@ -44,7 +44,7 @@ export default function Signup() {
       // Passwords match, proceed with signup
       const response = signUserAPI({ name: userName, password, email: userEmail });
       if (response.statusCode === 200){
-        navigate('/search');
+        navigate('/');
       }
       else {
         setPasswordError("Could not signup user!");
