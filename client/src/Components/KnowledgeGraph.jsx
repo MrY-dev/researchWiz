@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Network } from 'react-graph-vis';
-import { runCypherQuery } from './neo4jService.js';
+import { runCypherQuery } from '../API/neo4jServiceAPI.js';
 
 export default function KnowledgeGraph({ context }) {
   const [graph, setGraph] = useState({ nodes: [], edges: [] });
