@@ -102,5 +102,14 @@ const checkUser = async (email, password) => {
     }
 };
 
-export {  getHistory , addComments , addHistory, getName, addUser, checkUser  };
+const getCom = async (email,paperid)=>{
+    const db = CommentModel;
+    const query = await db.find({
+        email : email,
+        paperid : paperid
+    })
+    return query
+}
+
+export {  getHistory , addComments , addHistory, getName, addUser, checkUser,getCom  };
 

@@ -1,5 +1,5 @@
 import { getPaperPath, getPapers , recPaper ,getRec} from "../services/paperFunc.js"
-import { addComments } from "../services/userFunc.js"
+import { addComments ,getCom} from "../services/userFunc.js"
 
 //serachPaper searching for paper based on filter in dbs from frontend   
 const searchPaper = async (req, res) => {
@@ -111,4 +111,20 @@ const recentPaper = async(req,res) => {
     return;
 }
 
-export {searchPaper, addComment, recommendPaper, sendPaper  ,recentPaper};
+const getComment = async(req,res) => {
+    const email = req.query.email
+    const paperid = req.query.paperid
+    if(!email || ! paperid){
+        res.status(400).json([])
+        return;
+    }
+    if(email.trim().length === 0  || paperid.trim().length === 0){
+        res.status(400).json([])
+        return;
+    }
+    let result = await getCom(email,paperid)
+    res.status(200).json(result);
+    return
+}
+
+export {searchPaper, addComment, recommendPaper, sendPaper  ,recentPaper,getComment};
