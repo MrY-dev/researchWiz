@@ -34,12 +34,15 @@ const recPaper = async(email) => {
     for(let i in hist){
         let comm = await commdb.find({
             "email" :  email,
-            "paper_id" : i.paper_id,
+            "paper_id" : hist[i]['paper_id'],
         })
-        for(let j in comm.comments){
-            comments.push(j);
+        console.log('does this work');
+        for (let j in comm[0]['comments']){
+           comments.push(comm[0]['comments'][j])
         }
     }
+    console.log("these are comments");
+    console.log(comments);
 
    const in_string = comments.join(" ");
    const keyword_values = keyword_extractor.extract(in_string,{
