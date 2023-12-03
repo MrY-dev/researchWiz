@@ -1,7 +1,8 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
-import { searchPaper, addComment, sendPaper, addHist } from './controllers/paperController.js';
-import { recPaper } from './services/paperFunc.js';
+import { searchPaper, addComment, sendPaper ,recommendPaper , recentPaper} from './controllers/paperController.js';
+import { addHist,getHist ,signupUser,loginUser,getUserName, neoCred} from './controllers/userController.js'
+import buildMiddleware from './middlewares/buildMiddleware.js';
 
 dotenv.config();
 
@@ -11,7 +12,9 @@ const makeApp = async () => {
 
   app.post('/api/user/signup', signupUser);
 
-  app.post('/api/user/login', loginUser)
+  app.post('/api/user/login', loginUser);
+
+  app.get('/api/user/get-name', getUserName);
 
   app.get('/api/user/get-history', getHist);
 
@@ -21,9 +24,15 @@ const makeApp = async () => {
   
   app.post('/api/paper/add-comment', addComment);
 
-  app.get('/api/paper/recom-paper', recPaper);
+  app.get('/api/paper/recom-paper', recommendPaper);
+
+  app.get('/api/paper/recent-paper', recentPaper);
 
   app.get('/api/paper/send', sendPaper);
+
+  app.get('/api/user/get-cred', neoCred);
+
+  buildMiddleware(app);
 
   app.use((err, req, res, next) => {
     console.log(err);

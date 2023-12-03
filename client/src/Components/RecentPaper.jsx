@@ -1,15 +1,26 @@
 // RecentPaper.jsx
 import { useEffect, useState } from 'react';
-import { recentSearch } from './mockData.js';
 import { Link } from 'react-router-dom';
 import './RecentPaper.css'; // Import in RecentPaper.jsx
+import getRecentAPI from '../API/getRecentAPI.js';
 
 export default function RecentPaper() {
   const [recent, setRecent] = useState([]);
 
+  const email = localStorage.getItem('email');
+
   useEffect(() => {
-    setRecent(recentSearch);
-  }, []);
+    const fetchRecent = async () => {
+      const response = await getRecentAPI({ email: email });
+      if (response.statusCode === 200) {
+        setRecent(response.data);
+      } else {
+        setRecent([]);
+      }
+    setRecent();
+    }
+    fetchRecent();
+  }, [email]);
 
   return (
     <div className="container mt-4" id="rec">
@@ -21,7 +32,15 @@ export default function RecentPaper() {
           ) : (
             <div>
               {recent.map((paper, index) => (
-                <Link key={index} to={paper.link} target="_blank" rel="noopener noreferrer" className='rec-clickable'>
+                // <Link key={index} to={paper.link} target="_blank" rel="noopener noreferrer" className='rec-clickable'>
+                //   {paper.title}
+                // </Link>
+                <Link
+                  to={`/pdfviewer/${encodeURIComponent(paper.title)}`}
+                  className="rec-clickable"
+                  key={index}
+                  style={{ cursor: 'pointer' }}
+                >
                   {paper.title}
                 </Link>
               ))}

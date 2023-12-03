@@ -1,14 +1,20 @@
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import "./NavbarWelcome.css";
-import NavbarWelcome from "./NavbarWelcome";
+import NavbarWelcome from "./NavbarWelcome.jsx";
 import "./Loginpage.css";
+import signUserAPI from '../API/signUserAPI.js';
 
 export default function Signup() {
+  const [userName, setUserName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -24,12 +30,26 @@ export default function Signup() {
     setPasswordError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleUName = (e) => {
+    setUserName(e.target.value);
+  };
+
+  const handleUEmail = (e) => {
+    setUserEmail(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       // Passwords match, proceed with signup
-      console.log("Passwords matched!");
-      // Add your signup logic here
+      const response = await signUserAPI({ name: userName, password, email: userEmail });
+      console.log(response)
+      if (response.statusCode === 200){
+        navigate('/');
+      }
+      else {
+        setPasswordError("Could not signup user!");
+      }
     } else {
       // Passwords do not match, display an error
       setPasswordError("Passwords do not match!");
@@ -50,14 +70,16 @@ export default function Signup() {
             type="text"
             align="center"
             placeholder="Enter Name"
+            onChange={handleUName}
           />
           <input
             className="un"
             type="email"
             align="center"
             placeholder="Email"
+            onChange={handleUEmail}
           />
-<div className="password-container">
+    <div className="password-container">
       <input
         className="pass"
         type={showPassword ? "text" : "password"}

@@ -1,12 +1,35 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import './PDFViewer.css';
+import CommentList from './CommentList.jsx';
+import InnerNavbar from './InnerNavbar.jsx';
+import getPaperAPI from '../API/getPaperAPI.js';
+import getCommentAPI from '../API/getCommentAPI.js';
 
-export default function PDFViewer() {
-  const [pdfUrl, setPdfUrl] = useState(null);
+export default function PDFViewerComponent() {
+  const { title } = useParams();
+  const [pdfUrl, setPdfUrl] = useState('');
+  const [commList, setComList] = useState([]);
+
+  const email = localStorage.getItem('email');
+  const paperId = localStorage.getItem('selectedPaperId');
+
+  useEffect(() => {
+    const fetchComm = async () => {
+      const response = await getCommentAPI({ paper_id: paperId, email: email });
+        if (response.statusCode === 200) {
+          setComList(response.data);
+        } else {
+          setComList([]);
+        }
+      };
+      fetchComm();  
+    }, [email, paperId]);
 
   useEffect(() => {
     const fetchPdf = async () => {
       try {
-        const response = 'great'
+        const response = await getPaperAPI({ title });
         const pdfBlob = await response.blob();
         const pdfObjectURL = URL.createObjectURL(pdfBlob);
         setPdfUrl(pdfObjectURL);
@@ -16,17 +39,21 @@ export default function PDFViewer() {
     };
 
     fetchPdf();
-  }, []);
+  }, [title]);
 
   return (
     <div>
-      <h1>PDF Viewer</h1>
-      <p>Here is the embedded PDF:</p>
-      pdfUrl && (
-        <iframe src={pdfUrl} width="100%" height="600px" title="Embedded PDF"></iframe>
-      )
-
-      {/* <iframe src="./Exam Rules-2023.pdf" width="100%" height="600px" title="Embedded PDF"></iframe> */}
+    <InnerNavbar type="pdf"/>
+    <div className="pdf-page-container">
+      <div className="comments-container">
+        <h2>Comments</h2>
+        <CommentList comments={commList}/>
+        <button className="add-comment-button">+</button>
+      </div>
+      <div className="pdf-container">
+        {pdfUrl && <iframe src={pdfUrl} width="100%" height="100%" title="Embedded PDF"></iframe>}
+      </div>
+    </div>
     </div>
   );
 }
