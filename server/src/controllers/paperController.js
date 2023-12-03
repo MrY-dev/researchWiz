@@ -52,7 +52,6 @@ const addComment = async(req,res) => {
 const recommendPaper = async(req,res) => {
     let email = req.query.email;
     console.log(email);
-    return ;
     if(!email){
         res.status(400).json("Invalid Input");
         return;
