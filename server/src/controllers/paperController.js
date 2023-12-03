@@ -74,22 +74,6 @@ const recommendPaper = async(req,res) => {
 
 // Send the paper matched according to the title sent as query param 
 const sendPaper = async (req, res) => {
-//   const paperTitle = req.query.title;
-
-//   if (!paperTitle) {
-//     res.status(400).json({ message: 'Paper title cannot be empty' })
-//         return;
-//   }
-
-//   if (paperTitle.trim().length === 0) {
-//     res.status(400).json({ message: 'Paper title cannot be empty' })
-//         return;
-//   }
-
-//   const paperPath = getPaperPath(paperTitle);
-//   res.sendFile(paperPath);
-//     return;
-
   const title = req.params.title;
   const __dirname = '../pdfs';
   const metaData = await getPapers(title, 'title');
