@@ -32,7 +32,7 @@ const makeApp = async () => {
 
   app.get('/api/user/get-cred', neoCred);
 
-  buildMiddleware();
+  buildMiddleware(app);
 
   app.use((err, req, res, next) => {
     //console.log(err);
