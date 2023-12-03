@@ -2,6 +2,7 @@ import PaperModel from "../models/PaperSchema.js"
 import HistModel from "../models/HistSchema.js"
 import CommentModel from "../models/CommentSchema.js"
 import keyword_extractor from  "keyword-extractor"
+import { histDB } from "../middlewares/mongoDatabases.js";
 
 
 const getPapers = async (searchTerm,filter)=>{
@@ -63,4 +64,12 @@ const recPaper = async(email) => {
     return { dbresult , status };
 };
 
-export { getPaperPath, getPapers , recPaper};
+const getRec = async(email) => {
+    const db = HistModel;
+    let result = db.find({
+        "email" : email
+    }).sort({'timestamp' : '-1'}).limit(5);
+    return result;
+};
+
+export { getPaperPath, getPapers , recPaper , getRec};

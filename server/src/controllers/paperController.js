@@ -1,4 +1,4 @@
-import { getPaperPath, getPapers , recPaper } from "../services/paperFunc.js"
+import { getPaperPath, getPapers , recPaper ,getRec} from "../services/paperFunc.js"
 import { addComments } from "../services/userFunc.js"
 
 //serachPaper searching for paper based on filter in dbs from frontend   
@@ -95,4 +95,19 @@ const sendPaper = async (req, res) => {
   res.sendFile(pdfPath);
 };
 
-export {searchPaper, addComment, recommendPaper, sendPaper  };
+const recentPaper = async(req,res) => {
+    const email = req.query.email
+    if(!email){
+        res.status(400).json("Invalid Input");
+        return;
+    }
+    if(email.trim().length === 0){
+        res.status(400).json("Invalid Input");
+        return;
+    }
+    let result = await getRec(email);
+    res.status(200).json(result);
+    return;
+}
+
+export {searchPaper, addComment, recommendPaper, sendPaper  ,recentPaper};

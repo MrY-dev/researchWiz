@@ -48,7 +48,11 @@ const addHistory = async(email,paperid) => {
 };
 
 const getHistory = async(email) => {
-
+    const db = HistModel;
+    let query = await db.find({
+        "email" : email,
+    })
+    return query;
 }
 
 export {  getHistory , addComments , addHistory  };
