@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-import jwt from 'jwt';
+import jwt from 'jsonwebtoken';
 import { addHistory ,getHistory, getName, addUser } from "../services/userFunc.js"
 
 dotenv.config();
