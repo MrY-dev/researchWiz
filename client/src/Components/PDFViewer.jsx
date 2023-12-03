@@ -12,6 +12,7 @@ export default function PDFViewerComponent() {
   const [commList, setComList] = useState([]);
 
   const email = localStorage.getItem('email');
+  const paperId = localStorage.getItem('selectedPaperId');
 
   useEffect(() => {
     const fetchComm = async () => {
@@ -23,7 +24,7 @@ export default function PDFViewerComponent() {
         }
       };
       fetchComm();  
-    }, [email]);
+    }, [email, paperId]);
 
   useEffect(() => {
     const fetchPdf = async () => {
