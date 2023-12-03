@@ -15,7 +15,7 @@ export default function SearchResults(props) {
       console.log('Failed at adding paper to history.');
     }
   };
-
+    console.log(props)
   return (
     <div className="container">
       {props.search.length === 0 ? <div><p>No results found</p></div> : (props.search.map((item, index) => (

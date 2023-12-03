@@ -6,17 +6,17 @@ const searchPaper = async (req, res) => {
     let searchTerm = req.query.keyword
     let filter = req.query.filter
     if(!searchTerm){
-        res.status(400).json("Invalid Input")
+        res.status(400).json([])
         return;
     }
     if(searchTerm.trim().length === 0){
         console.log(searchTerm + "hello")
-       res.status(400).json("Invalid Input");
+       res.status(400).json([]);
         return;
     }
     let possiblefilters = ['title','year','author'];
     if(!possiblefilters.includes(filter)){
-        res.status(400).json("Invalid filter");
+        res.status(400).json([]);
         return;
     }
     let result = await getPapers(searchTerm,filter);
@@ -31,16 +31,16 @@ const addComment = async(req,res) => {
     let email = req.body['email'];
     let paperid = req.body['paperid'];
     if(!comment || !email){
-        res.status(400).json("Invalid Input");
+        res.status(400).json([]);
         return;
     }
     if(comment.trim().length === 0 || email.trim().length === 0){
-        res.status(400).json("Invalid Input");
+        res.status(400).json([]);
         return;
     }
     let result = await addComments(email,comment,paperid) ;
     if(!result){
-        res.status(400).json("unsucessful");
+        res.status(400).json([]);
         return;
     }
     res.status(200).json(result);
@@ -78,7 +78,7 @@ const sendPaper = async (req, res) => {
   const __dirname = '../pdfs';
   const metaData = await getPapers(title, 'title');
   if (metaData.length > 1) {
-    res.status(401).json("Invalid Input");
+    res.status(401).json([]);
     return;
   }
 
@@ -99,11 +99,11 @@ const sendPaper = async (req, res) => {
 const recentPaper = async(req,res) => {
     const email = req.query.email
     if(!email){
-        res.status(400).json("Invalid Input");
+        res.status(400).json([]);
         return;
     }
     if(email.trim().length === 0){
-        res.status(400).json("Invalid Input");
+        res.status(400).json([]);
         return;
     }
     let result = await getRec(email);
