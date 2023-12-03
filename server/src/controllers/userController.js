@@ -64,10 +64,9 @@ const loginUser = async(req,res) => {
     }
 }
 
-const neoCred = (req, res) => {
+const neoCred = async(req, res) => {
     const user = process.env.NEO_USER
     const password = process.env.NEO_PASS
     res.status(200).json({user, password})
 }
-
-export { getHist , addHist , signupUser , loginUser, neoCred }
+export { getHist , addHist , signupUser , loginUser, neoCred , getUserName}
