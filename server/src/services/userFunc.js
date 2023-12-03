@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import HistModel  from "../models/HistSchema.js";
 import PaperModel from "../models/PaperSchema.js";
 import UserModel from "../models/UserSchema.js";
@@ -76,5 +77,16 @@ const getName = async (email) => {
     return query;
 };
 
-export {  getHistory , addComments , addHistory, getName  };
+const addUser = async (name, email, password) => {
+    const db = UserModel;
+    const hashedPassword = await bcrypt.hash(password, 12);
+    
+    await db.create({
+        name,
+        email,
+        password: hashedPassword
+    });
+};
+
+export {  getHistory , addComments , addHistory, getName, addUser  };
 

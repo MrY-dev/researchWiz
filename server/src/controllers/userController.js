@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-import { addHistory ,getHistory, getName } from "../services/userFunc.js"
+import { addHistory ,getHistory, getName, addUser } from "../services/userFunc.js"
 
 dotenv.config();
 
@@ -38,11 +38,18 @@ const getUserName = async(req, res) => {
 };
 
 const signupUser = async(req,res) => {
-
+    try {
+        const { name, email, password } = req.body;
+        await addUser(name, email, password);
+        res.status(200).json('User created successfully' );
+    } catch (err) {
+        console.error(err);
+        res.status(400).json('Could not create user due to some issue.');
+    }
 }
 
 const loginUser = async(req,res) => {
-
+    
 }
 
 const neoCred = (req, res) => {
