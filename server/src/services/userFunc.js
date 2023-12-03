@@ -90,12 +90,12 @@ const addUser = async (name, email, password) => {
 const checkUser = async (email, password) => {
     const db = UserModel;
 
-    const query = await db.findOne({email});
+    const query = await db.findOne({email: email});
     if (!query){
         throw new Error('User not found');
     }
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = await bcrypt.compare(password, query.password);
 
     if (!passwordMatch) {
       throw new Error('Invalid Credentials');

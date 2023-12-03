@@ -53,19 +53,19 @@ const recommendPaper = async(req,res) => {
     let email = req.query.email;
     console.log(email);
     if(!email){
-        res.status(400).json("Invalid Input");
+        res.status(400).json([]);
         return;
     }
     if(email.trim().length === 0){
-        res.status(400).json("Invalid Input");
+        res.status(400).json([]);
         return;
     }
     let result = await recPaper(email);
     if(!result){
-        res.status(400).json("unsucessful");
+        res.status(400).json([]);
         return;
     }
-    res.json(result);
+    res.status(200).json(result);
     return;
 };
 

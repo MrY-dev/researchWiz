@@ -31,6 +31,11 @@ const recPaper = async(email) => {
         "email" : email 
     },).sort({'timestamp' : '-1'}).limit(5);
     console.log(hist);
+    if(hist.length === 0){
+        let result = await db.find({}).limit(5);
+        console.log(result)
+        return result
+    }
     let comments = [];
     for(let i in hist){
         let comm = await commdb.find({
@@ -44,14 +49,32 @@ const recPaper = async(email) => {
     }
     console.log("these are comments");
     console.log(comments);
-
+    if(comments.length === 0){
+        let hist_keywords = [];
+        for(let i in hist){
+            let paper = await db.find({
+                "paper_id" : hist[i]['paper_id']
+            })
+            for(let i in paper['keywords']){
+                hist_keywords.push(paper['keywords'][i])
+            }
+        }
+        let dbresult = await db.find({
+            "keywords" : {
+                "$in" : keyword_values
+            }
+        })
+        return dbresult;
+    }
    const in_string = comments.join(" ");
+ 
    const keyword_values = keyword_extractor.extract(in_string,{
         language: "english",
         remove_digits : true,
         return_changed_case: true,
         remove_duplicates: true,
     })
+    
     let status = "OK";
     let dbresult = await db.find({
         "keywords" : {
@@ -59,9 +82,8 @@ const recPaper = async(email) => {
         }
     })
     if(!dbresult){
-        status = "bad";
     }
-    return { dbresult , status };
+    return dbresult;
 };
 
 const getRec = async(email) => {
