@@ -25,7 +25,6 @@ const addHistory = async(email,paperid) => {
         "paperid" : paperid,
     });
     
-    console.log(dbquery.length)
     if(dbquery.length === 0){
         try{
             await db.create({

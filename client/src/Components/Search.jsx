@@ -30,7 +30,6 @@ export default function Search() {
       // API call for search based on input
       const fetchSearch = async () => {
         const response = await getSearchAPI({ keyword: search, filter });
-        console.log(response)
         if (response.statusCode === 200) {
           setRes(response.data);
         } else {
@@ -39,7 +38,7 @@ export default function Search() {
       };
       fetchSearch();
     }
-  }, [search, res, filter, email]);
+  }, [search, filter, email]);
 
   const handleDrpdnChange = (e) => {
     setFilter(e.target.value);
@@ -55,6 +54,8 @@ export default function Search() {
     }
   };
 
+  console.log(res);
+  
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };

@@ -18,7 +18,7 @@ export default function SearchResults(props) {
     console.log(props)
   return (
     <div className="container">
-      {props.search.length === 0 ? <div><p>No results found</p></div> : (props.search.map((item, index) => (
+      {props.search.length === undefined ? <div><p>No results found</p></div> : (props.search.map((item, index) => (
         <Link
           to={`/pdfviewer/${encodeURIComponent(item.title)}`}
           className="card mb-3"

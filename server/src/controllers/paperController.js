@@ -1,8 +1,9 @@
-import { getPaperPath, getPapers , recPaper ,getRec} from "../services/paperFunc.js"
+import { getPaperPath, getPapers , recPaper ,getRec, getPaperMD} from "../services/paperFunc.js"
 import { addComments ,getCom} from "../services/userFunc.js"
 
 //serachPaper searching for paper based on filter in dbs from frontend   
 const searchPaper = async (req, res) => {
+    console.log(req.query);
     let searchTerm = req.query.keyword
     let filter = req.query.filter
     if(!searchTerm){
@@ -10,7 +11,6 @@ const searchPaper = async (req, res) => {
         return;
     }
     if(searchTerm.trim().length === 0){
-        console.log(searchTerm + "hello")
        res.status(400).json([]);
         return;
     }
@@ -51,7 +51,6 @@ const addComment = async(req,res) => {
 //recommendPaper using email through history and comments
 const recommendPaper = async(req,res) => {
     let email = req.query.email;
-    console.log(email);
     if(!email){
         res.status(400).json([]);
         return;
@@ -74,9 +73,9 @@ const recommendPaper = async(req,res) => {
 
 // Send the paper matched according to the title sent as query param 
 const sendPaper = async (req, res) => {
-  const title = req.params.title;
+  const paperid = req.params.paperid;
   const __dirname = '../pdfs';
-  const metaData = await getPapers(title, 'title');
+  const metaData = await getPaperMD(paperid);
   if (metaData.length > 1) {
     res.status(401).json([]);
     return;

@@ -7,8 +7,6 @@ import { histDB } from "../middlewares/mongoDatabases.js";
 
 const getPapers = async (searchTerm,filter)=>{
     const db = PaperModel;
-    console.log(filter)
-    console.log(searchTerm)
     let result = await db.find({ [`${filter}`] : {$regex: searchTerm,}});
     let status = "OK";
     if(!result){
@@ -30,10 +28,9 @@ const recPaper = async(email) => {
     let hist = await histdb.find({
         "email" : email 
     },).sort({'timestamp' : '-1'}).limit(5);
-    console.log(hist);
+
     if(hist.length === 0){
         let result = await db.find({}).limit(5);
-        console.log(result)
         return result
     }
     let comments = [];
@@ -42,13 +39,10 @@ const recPaper = async(email) => {
             "email" :  email,
             "paperid" : hist[i]['paperid'],
         })
-        console.log('does this work');
         for (let j in comm[0]['comments']){
            comments.push(comm[0]['comments'][j])
         }
     }
-    console.log("these are comments");
-    console.log(comments);
     if(comments.length === 0){
         let hist_keywords = [];
         for(let i in hist){
@@ -94,4 +88,11 @@ const getRec = async(email) => {
     return result;
 };
 
-export { getPaperPath, getPapers , recPaper , getRec};
+const getPaperMD = async (paperid) => {
+    const db = PaperModel;
+    const res = await db.find({paperid})
+
+    return res;
+};
+
+export { getPaperPath, getPapers , recPaper , getRec, getPaperMD};
