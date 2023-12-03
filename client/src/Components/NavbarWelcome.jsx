@@ -8,6 +8,7 @@ export default function NavbarWelcome({ navType }) {
       <div className="container">
         <Link to="/" className="logo">
           <img src='./logo.png' alt="Logo" className="logo-img" />
+          <b>ResearchWiz</b>
         </Link>
         <ul className="links">
           <Link to={navType === "Login" ? (

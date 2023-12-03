@@ -25,7 +25,7 @@ export default function PDFViewerComponent() {
 
   return (
     <div>
-    <InnerNavbar />
+    <InnerNavbar type="pdf"/>
     <div className="pdf-page-container">
       <div className="comments-container">
         <h2>Comments</h2>

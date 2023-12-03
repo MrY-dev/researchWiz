@@ -59,4 +59,15 @@ const cmntList = [
   }
 ]
 
-export {searchData, responseData,recentSearch, cmntList}
+const alertList = [
+  {
+    title: 'lkasdlkasasd',
+    comment: ['askflsmflkm', 'skcjmlkmasc', 'axkmcskscm', 'slkamkdssad']
+  },
+  {
+    title: 'slkdpodjfked',
+    comment: ['askasdA', 'ASCKLS', 'axkmcskscm', 'slkamkdssad']
+  }
+]
+
+export { searchData, responseData, recentSearch, cmntList, alertList }
