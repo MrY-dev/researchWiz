@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import './PDFViewer.css';
 import CommentList from './CommentList.jsx';
 import InnerNavbar from './InnerNavbar.jsx';
 import { cmntList } from './mockData.js';
+import getPaperAPI from '../API/getPaperAPI.js';
 
 export default function PDFViewerComponent() {
-  const [pdfUrl, setPdfUrl] = useState('./Exam Rules-2023.pdf');
+  const { title } = useParams();
+  const [pdfUrl, setPdfUrl] = useState('');
 
   useEffect(() => {
     const fetchPdf = async () => {
       try {
-        const response = await getPaperPDF({  });
+        const response = await getPaperAPI({ title });
         const pdfBlob = await response.blob();
         const pdfObjectURL = URL.createObjectURL(pdfBlob);
         setPdfUrl(pdfObjectURL);
@@ -20,7 +23,7 @@ export default function PDFViewerComponent() {
     };
 
     fetchPdf();
-  }, []);
+  }, [title]);
 
   return (
     <div>

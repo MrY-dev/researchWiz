@@ -30,7 +30,15 @@ export default function RecentPaper() {
           ) : (
             <div>
               {recent.map((paper, index) => (
-                <Link key={index} to={paper.link} target="_blank" rel="noopener noreferrer" className='rec-clickable'>
+                // <Link key={index} to={paper.link} target="_blank" rel="noopener noreferrer" className='rec-clickable'>
+                //   {paper.title}
+                // </Link>
+                <Link
+                  to={`/pdfviewer/${encodeURIComponent(paper.title)}`}
+                  className="rec-clickable"
+                  key={index}
+                  style={{ cursor: 'pointer' }}
+                >
                   {paper.title}
                 </Link>
               ))}
