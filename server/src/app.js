@@ -11,7 +11,9 @@ const makeApp = async () => {
 
   app.post('/api/user/signup', signupUser);
 
-  app.post('/api/user/login', loginUser)
+  app.post('/api/user/login', loginUser);
+
+  app.get('/api/user/get-name', getUserName);
 
   app.get('/api/user/get-history', getHist);
 

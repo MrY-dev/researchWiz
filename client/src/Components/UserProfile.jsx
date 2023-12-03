@@ -1,6 +1,37 @@
-import InnerNavbar from './InnerNavbar'
-import './UserProfile.css'
+import { useState, useEffect } from 'react';
+import InnerNavbar from './InnerNavbar.jsx';
+import './UserProfile.css';
+import getUserNameAPI from '../API/getUserNameAPI.js';
+import getHistAPI from '../API/getHistAPI.js';
+
 export default function UserProfile() {
+  const [userName, setUserName] = useState('');
+  const [userHist, setUserHist] = useState([]);
+
+  useEffect(() => {
+    const fetchUName = async () => {
+      const response = await getUserNameAPI({ email });
+        if (response.statusCode === 200) {
+          setUserName(response.data);
+        } else {
+          setUserName('');
+        }
+    };
+    fetchUName();
+  }, []);
+
+  useEffect(() => {
+    const fetchHist = async () => {
+      const response = await getHistAPI({ email });
+        if (response.statusCode === 200) {
+          setUserHist(response.data);
+        } else {
+          setUserHist([]);
+        }
+    };
+    fetchHist();
+  }, []);
+
   return (
     <div className='userprofile'>
         <InnerNavbar/>
@@ -14,24 +45,15 @@ export default function UserProfile() {
           </div>
           <div className="col-lg-6">
             <div className="user-details">
-              <h2>John Doe</h2>
-              <p>johndoe@example.com</p>
+              <h2>{userName}</h2>
+              <p>{email}</p>
             </div>
           </div>
         </div>
         <div className="history-user-profile">
           <h3>History User Profile</h3>
           <ul>
-            <li>First point</li>
-            <li>Second point</li>
-            <li>Third point</li>
-            <li>Fourth point</li>
-            <li>Fifth point</li>
-            <li>Sixth point</li>
-            <li>Seventh point</li>
-            <li>Eighth point</li>
-            <li>Ninth point</li>
-            <li>Tenth point</li>
+            {userHist.map((item, index) => (<li key={index}>{item}</li>))}
           </ul>
         </div>
       </div>

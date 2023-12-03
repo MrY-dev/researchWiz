@@ -1,4 +1,4 @@
-import {  addHistory ,getHistory } from "../services/userFunc.js"
+import { addHistory ,getHistory, getName } from "../services/userFunc.js"
 
 const addHist = async(req,res) => {
     let paperid = req.body['paper_id'];
@@ -24,6 +24,15 @@ const getHist = async(req,res) => {
     let result = await getHistory(email);
     res.json(result).status(200);
 }
+
+const getUserName = async(req, res) => {
+    const email = req.query.email;
+    if(!email || email.trim().length === 0){
+        res.json("Invalid Input").status(400);
+    }
+    let result = await getName(email);
+    res.json(result.name).status(200);
+};
 
 const signupUser = async(req,res) => {
 
