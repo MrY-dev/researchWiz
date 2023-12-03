@@ -62,9 +62,7 @@ export default function Loginpage() {
               placeholder="Password"
               onChange={handlePassword}
             />
-            <input type="submit" className="submit" align="center">
-              Sign in
-            </input>
+            <input type="submit" className="submit" align="center" value="Sign in" />
             {/* <p className="forgot" align="center"><a href="#">Create account</a></p> */}
           </form>
         </div>
