@@ -1,9 +1,9 @@
+import path from 'path';
 import { getPaperPath, getPapers , recPaper ,getRec, getPaperMD} from "../services/paperFunc.js"
 import { addComments ,getCom} from "../services/userFunc.js"
 
 //serachPaper searching for paper based on filter in dbs from frontend   
 const searchPaper = async (req, res) => {
-    console.log(req.query);
     let searchTerm = req.query.keyword
     let filter = req.query.filter
     if(!searchTerm){
@@ -73,8 +73,8 @@ const recommendPaper = async(req,res) => {
 
 // Send the paper matched according to the title sent as query param 
 const sendPaper = async (req, res) => {
-  const paperid = req.params.paperid;
-  const __dirname = '../pdfs';
+  const paperid = req.query.paperid;
+  const __dirname = './pdfs';
   const metaData = await getPaperMD(paperid);
   if (metaData.length > 1) {
     res.status(401).json([]);
@@ -82,7 +82,8 @@ const sendPaper = async (req, res) => {
   }
 
     // file_path of kind 
-  const f_path = metaData['file_path']; 
+    console.log(metaData);
+  const f_path = metaData[0]['file_path']; 
   const pdfPath = path.join(__dirname, f_path);
 
   const [f_name] = f_path.split('/').slice(-1)

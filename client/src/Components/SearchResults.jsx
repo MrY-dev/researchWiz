@@ -20,7 +20,7 @@ export default function SearchResults(props) {
     <div className="container">
       {props.search.length === undefined ? <div><p>No results found</p></div> : (props.search.map((item, index) => (
         <Link
-          to={`/pdfviewer/${encodeURIComponent(item.title)}`}
+          to={`/pdfviewer/${encodeURIComponent(item.paperid)}`}
           className="card mb-3"
           key={index}
           onClick={() => handleClick(item)}
@@ -28,7 +28,7 @@ export default function SearchResults(props) {
         >
           <div className="card-body">
             <h5 className="card-title">Title: {item.title}</h5>
-            <p className="card-text">Author: {item.author}</p>
+            <p className="card-text">Author: {item.author.length <=5 ? item.author.join(' ') : `${item.author.slice(0, 5).join(' ')}...et al`}</p>
             <p className="card-text">Year: {item.year}</p>
           </div>
         </Link>

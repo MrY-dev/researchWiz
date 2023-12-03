@@ -1,18 +1,18 @@
+import mongoose from "mongoose";
 import PaperModel from "../models/PaperSchema.js"
 import HistModel from "../models/HistSchema.js"
 import CommentModel from "../models/CommentSchema.js"
 import keyword_extractor from  "keyword-extractor"
-import { histDB } from "../middlewares/mongoDatabases.js";
 
 
 const getPapers = async (searchTerm,filter)=>{
     const db = PaperModel;
-    let result = await db.find({ [`${filter}`] : {$regex: searchTerm,}});
+    let result = await db.find({ [`${filter}`] : {$regex: searchTerm, $options: 'i'}});
     let status = "OK";
     if(!result){
         status = "BAD"
     }
-    return {result,status};
+    return result;
 };
 
 const getPaperPath = async (paperTitle) => {
@@ -39,6 +39,9 @@ const recPaper = async(email) => {
             "email" :  email,
             "paperid" : hist[i]['paperid'],
         })
+        if(comm.length === 0){
+            continue
+        }
         for (let j in comm[0]['comments']){
            comments.push(comm[0]['comments'][j])
         }
@@ -49,13 +52,13 @@ const recPaper = async(email) => {
             let paper = await db.find({
                 "paperid" : hist[i]['paperid']
             })
-            for(let i in paper['keywords']){
-                hist_keywords.push(paper['keywords'][i])
+            for(let i in paper[0]['keywords']){
+                hist_keywords.push(paper[0]['keywords'][i])
             }
         }
         let dbresult = await db.find({
             "keywords" : {
-                "$in" : keyword_values
+                "$in" : hist_keywords
             }
         })
         return dbresult;
@@ -90,8 +93,10 @@ const getRec = async(email) => {
 
 const getPaperMD = async (paperid) => {
     const db = PaperModel;
-    const res = await db.find({paperid})
-
+    const pid = new mongoose.ObjectId(paperid)
+    console.log(pid);
+    const res = await db.find({paperid: pid})
+    console.log(res)
     return res;
 };
 
