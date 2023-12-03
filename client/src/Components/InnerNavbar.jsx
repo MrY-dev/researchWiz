@@ -33,7 +33,7 @@ export default function InnerNavbar({ type }) {
           <Link to="/">
             <li>Home</li>
           </Link>
-          <Link to="#">
+          <Link to="/graph">
             <li>Graph</li>
           </Link>
           {type === 'pdf' && <li>

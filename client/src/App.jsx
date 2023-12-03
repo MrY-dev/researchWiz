@@ -7,6 +7,7 @@ import Signup from './Components/Signup.jsx';
 import Search from './Components/Search.jsx';
 import PDFViewer from './Components/PDFViewer.jsx';
 import UserProfile from './Components/UserProfile.jsx';
+import KnowledgeGraph from './Components/KnowledgeGraph.jsx';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/search" element={<Search />}/> 
       <Route path="/pdfviewer/:title" element={<PDFViewer />}/> 
       <Route path="/userprofile" element={<UserProfile />}/>
+      <Route path="/graph" element={<KnowledgeGraph context="universal" />}/>
     </Routes>
   );
 }

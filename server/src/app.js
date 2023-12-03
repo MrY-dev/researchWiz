@@ -29,6 +29,8 @@ const makeApp = async () => {
 
   app.get('/api/paper/send', sendPaper);
 
+  app.get('/api/user/get-cred', neoCred);
+
   app.use((err, req, res, next) => {
     //console.log(err);
     res.status(500).send('Something broke');
