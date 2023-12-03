@@ -16,7 +16,7 @@ export default function PDFViewerComponent() {
 
   useEffect(() => {
     const fetchComm = async () => {
-      const response = await getCommentAPI({ paper_id: paperId, email: email });
+      const response = await getCommentAPI({ paperid: paperId, email: email });
         if (response.statusCode === 200) {
           setComList(response.data);
         } else {

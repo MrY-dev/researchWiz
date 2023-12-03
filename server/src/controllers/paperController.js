@@ -29,7 +29,7 @@ const searchPaper = async (req, res) => {
 const addComment = async(req,res) => {
     let comment = req.body['comment'];
     let email = req.body['email'];
-    let paper_id = req.body['paper_id'];
+    let paperid = req.body['paperid'];
     if(!comment || !email){
         res.status(400).json("Invalid Input");
         return;
@@ -38,7 +38,7 @@ const addComment = async(req,res) => {
         res.status(400).json("Invalid Input");
         return;
     }
-    let result = await addComments(email,comment,paper_id) ;
+    let result = await addComments(email,comment,paperid) ;
     if(!result){
         res.status(400).json("unsucessful");
         return;

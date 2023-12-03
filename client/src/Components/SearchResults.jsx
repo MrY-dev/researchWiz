@@ -6,11 +6,11 @@ export default function SearchResults(props) {
   const email = localStorage.getItem('email');
 
   const handleClick = async (item) => {
-    const { paper_id } = item;
+    const { paperid } = item;
 
-    localStorage.setItem('selectedPaperId', paper_id);
+    localStorage.setItem('selectedPaperId', paperid);
 
-    const response = await addToHistAPI({ email: email, paper_id });
+    const response = await addToHistAPI({ email: email, paperid: paperid });
     if (response !== 200) {
       console.log('Failed at adding paper to history.');
     }

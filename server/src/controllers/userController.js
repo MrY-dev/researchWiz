@@ -5,7 +5,7 @@ import { addHistory ,getHistory, getName, addUser , checkUser} from "../services
 dotenv.config();
 
 const addHist = async(req,res) => {
-    let paperid = req.body['paper_id'];
+    let paperid = req.body['paperid'];
     let email = req.body['email'];
     console.log(paperid)
     console.log(email)
