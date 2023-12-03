@@ -33,6 +33,7 @@ export default function Loginpage() {
     setErrMsg('');
     const { token } = response.data;
     localStorage.setItem('token', token);
+    localStorage.setItem('email', email);
     navigate('/search');
   }
 
@@ -45,6 +46,7 @@ export default function Loginpage() {
           <p className="sign" align="center">
             Sign in
           </p>
+          {!loginSuccess && errMsg && (<p>{errMsg}</p>)}
           <form className="form1" method="POST" onSubmit={handleSubmit}>
             <input
               className="un"

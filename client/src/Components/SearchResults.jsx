@@ -3,6 +3,8 @@ import './SearchResults.css';
 import addToHistAPI from '../API/addToHistAPI';
 
 export default function SearchResults(props) {
+  const email = localStorage.getItem('email');
+
   const handleClick = async (e) => {
     const response = await addToHistAPI({ email: email, paper_id: paperId });
     if (response !== 200) {

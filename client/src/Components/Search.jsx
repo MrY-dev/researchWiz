@@ -11,6 +11,8 @@ export default function Search() {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('title');
 
+  const email = localStorage.getItem('email');
+
   useEffect(() => {
     if (search === '') {
       // API call for default data or recent searches
@@ -35,7 +37,7 @@ export default function Search() {
       };
       fetchSearch();
     }
-  }, [search, res, filter]);
+  }, [search, res, filter, email]);
 
   const handleDrpdnChange = (e) => {
     setFilter(e.target.value);
