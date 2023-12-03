@@ -21,10 +21,10 @@ export default function Loginpage() {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = logUserAPI({email, password});
+    const response =  await logUserAPI({email, password});
     if (response.statusCode !== 200){
       setLoginSuccess(false);
       setErrMsg('Could not login');

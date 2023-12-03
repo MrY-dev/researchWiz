@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const signUserAPI = async (userData) => {
     let res;
+    console.log(userData)
   const config = {
     method: 'post',
     url: 'http://localhost:8080/api/user/signup',
@@ -12,6 +13,7 @@ const signUserAPI = async (userData) => {
   };
   try {
     res = await axios(config);
+    console.log(res)
     return { statusCode: res.status, data: res.data };
   } catch (err) {
     console.error('Could not get response from server.', err);
