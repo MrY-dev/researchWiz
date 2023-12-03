@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
-import { searchPaper, addComment, sendPaper ,recommendPaper , recentPaper} from './controllers/paperController.js';
+import { searchPaper, addComment, sendPaper ,recommendPaper , recentPaper, getComment} from './controllers/paperController.js';
 import { addHist,getHist ,signupUser,loginUser,getUserName, neoCred} from './controllers/userController.js'
 import buildMiddleware from './middlewares/buildMiddleware.js';
 
@@ -23,6 +23,8 @@ const makeApp = async () => {
   app.get('/api/paper/search', searchPaper);
   
   app.post('/api/paper/add-comment', addComment);
+
+  app.get('/api/paper/get-comment', getComment);
 
   app.get('/api/paper/recom-paper', recommendPaper);
 

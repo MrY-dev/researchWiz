@@ -18,6 +18,7 @@ export default function Search() {
       // API call for default data or recent searches
       const fetchRecom = async () => {
         const response = await getRecomAPI({ email: email });
+        console.log(response)
         if (response.statusCode === 200) {
           setRes(response.data);
         } else {
@@ -29,6 +30,7 @@ export default function Search() {
       // API call for search based on input
       const fetchSearch = async () => {
         const response = await getSearchAPI({ keyword: search, filter });
+        console.log(response)
         if (response.statusCode === 200) {
           setRes(response.data);
         } else {
