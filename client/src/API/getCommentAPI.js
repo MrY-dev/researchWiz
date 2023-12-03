@@ -3,7 +3,7 @@ import axios from 'axios';
 const getCommentAPI = async (commData) => {
   const config = {
     method: 'get',
-    url: 'http://localhost:8080/api/paper/add-comment',
+    url: 'http://localhost:8080/api/paper/get-comment',
     headers: {
       'Content-Type': 'application/json',
     },
