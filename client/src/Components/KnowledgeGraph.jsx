@@ -25,7 +25,7 @@ export default function KnowledgeGraph() {
       server_password: passWrd,
       labels: {
         Node: {
-          caption: 'name', // Change to your node property
+          caption: 'paper_id', 
         },
       },
       relationships: {
