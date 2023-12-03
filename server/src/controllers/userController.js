@@ -1,4 +1,5 @@
 import * as dotenv from 'dotenv';
+import jwt from 'jwt';
 import { addHistory ,getHistory, getName, addUser } from "../services/userFunc.js"
 
 dotenv.config();
@@ -49,7 +50,18 @@ const signupUser = async(req,res) => {
 }
 
 const loginUser = async(req,res) => {
-    
+    const { email, password } = req.body;
+    try {
+        await checkUser(email, password);
+
+        const token = jwt.sign({ email: email }, process.env.SECRET_KEY, {
+            expiresIn: '1h',
+          });
+        res.status(200).json({token});
+    } catch (err) {
+        console.error(err);
+        res.status(400).json('Could not login user due to some issue.');
+    }
 }
 
 const neoCred = (req, res) => {
@@ -58,4 +70,4 @@ const neoCred = (req, res) => {
     res.status(200).json({user, password})
 }
 
-export { getHist , addHist , signupUser , loginUser }
+export { getHist , addHist , signupUser , loginUser, neoCred }

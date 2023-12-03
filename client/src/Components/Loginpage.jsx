@@ -31,6 +31,8 @@ export default function Loginpage() {
     }
     setLoginSuccess(true);
     setErrMsg('');
+    const { token } = response.data;
+    localStorage.setItem('token', token);
     navigate('/search');
   }
 

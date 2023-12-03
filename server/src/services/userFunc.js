@@ -1,6 +1,5 @@
 import bcrypt from 'bcrypt';
 import HistModel  from "../models/HistSchema.js";
-import PaperModel from "../models/PaperSchema.js";
 import UserModel from "../models/UserSchema.js";
 import CommentModel from "../models/CommentSchema.js"
 
@@ -88,5 +87,20 @@ const addUser = async (name, email, password) => {
     });
 };
 
-export {  getHistory , addComments , addHistory, getName, addUser  };
+const checkUser = async (email, password) => {
+    const db = UserModel;
+
+    const query = await db.findOne({email});
+    if (!query){
+        throw new Error('User not found');
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      throw new Error('Invalid Credentials');
+    }
+};
+
+export {  getHistory , addComments , addHistory, getName, addUser, checkUser  };
 
