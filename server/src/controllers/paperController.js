@@ -73,22 +73,42 @@ const recommendPaper = async(req,res) => {
 //addHist using emal and addHist based on email from frontend
 
 // Send the paper matched according to the title sent as query param 
-const sendPaper = (req, res) => {
-  const paperTitle = req.query.title;
+const sendPaper = async (req, res) => {
+//   const paperTitle = req.query.title;
 
-  if (!paperTitle) {
-    res.status(400).json({ message: 'Paper title cannot be empty' })
-        return;
-  }
+//   if (!paperTitle) {
+//     res.status(400).json({ message: 'Paper title cannot be empty' })
+//         return;
+//   }
 
-  if (paperTitle.trim().length === 0) {
-    res.status(400).json({ message: 'Paper title cannot be empty' })
-        return;
-  }
+//   if (paperTitle.trim().length === 0) {
+//     res.status(400).json({ message: 'Paper title cannot be empty' })
+//         return;
+//   }
 
-  const paperPath = getPaperPath(paperTitle);
-  res.sendFile(paperPath);
+//   const paperPath = getPaperPath(paperTitle);
+//   res.sendFile(paperPath);
+//     return;
+
+  const title = req.params.title;
+  const __dirname = '../pdfs';
+  const metaData = await getPapers(title, 'title');
+  if (metaData.length > 1) {
+    res.status(401).json("Invalid Input");
     return;
+  }
+
+  const f_path = metaData['file_path']; 
+  const pdfPath = path.join(__dirname, f_path);
+
+  const [f_name] = f_path.split('/').slice(-1)
+
+  // Set the response headers
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', `inline; filename=${f_name}`);
+
+  // Send the PDF file
+  res.sendFile(pdfPath);
 };
 
 export {searchPaper, addComment, recommendPaper, sendPaper  };

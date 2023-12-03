@@ -1,35 +1,54 @@
 import { useEffect, useState } from 'react';
 import InnerNavbar from './InnerNavbar.jsx';
 import SearchResults from './SearchResults.jsx';
-import { searchData, responseData } from './mockData.js';
 import RecentPaper from './RecentPaper.jsx';
 import './Search.css'; // Import in Search.jsx
+import getSearchAPI from '../API/getSearchAPI.js';
+import getRecomAPI from '../API/getRecomAPI.js';
 
 export default function Search() {
-  const [res, setRes] = useState(responseData);
+  const [res, setRes] = useState([]);
   const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState('title');
 
   useEffect(() => {
     if (search === '') {
       // API call for default data or recent searches
-      if (res !== '') {
-        setRes(responseData);
-      }
+      const fetchRecom = async () => {
+        const response = await getRecomAPI({ email: email });
+        if (response.statusCode === 200) {
+          setRes(response.data);
+        } else {
+          setRes([]);
+        }
+      };
+      fetchRecom();
     } else {
       // API call for search based on input
-      if (res !== '') {
-        setRes(searchData);
-      } else {
-        setRes([]);
-      }
+      const fetchSearch = async () => {
+        const response = await getSearchAPI({ keyword: search, filter });
+        if (response.statusCode === 200) {
+          setRes(response.data);
+        } else {
+          setRes([]);
+        }
+      };
+      fetchSearch();
     }
-  }, [search, res]);
+  }, [search, res, filter]);
 
-  const handleSubmit = (e) => {
+  const handleDrpdnChange = (e) => {
+    setFilter(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // You might need to make an API call here based on the search input
-    // For demonstration, it sets the response data directly from mockData
-    setRes(searchData);
+    const response = await getSearchAPI({ keyword: search, filter });
+    if (response.statusCode === 200) {
+      setRes(response.data);
+    } else {
+      setRes([]);
+    }
   };
 
   const handleSearch = (e) => {
@@ -48,14 +67,14 @@ export default function Search() {
                 className="form-control"
                 id="search-input"
                 placeholder="Search..."
-                onKeyUp={handleSearch}
+                onChange={handleSearch}
               />
             </div>
             <div className="col-md-1">
-              <select className="form-select" id="filter-dropdown">
-                <option value="option1">Topic</option>
-                <option value="option2">Author</option>
-                <option value="option3">Year</option>
+              <select className="form-select" id="filter-dropdown" value={filter} onChange={handleDrpdnChange} >
+                <option value="title">Title</option>
+                <option value="author">Author</option>
+                <option value="year">Year</option>
               </select>
             </div>
             <div className="col-md-2">

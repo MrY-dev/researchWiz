@@ -1,14 +1,23 @@
 // RecentPaper.jsx
 import { useEffect, useState } from 'react';
-import { recentSearch } from './mockData.js';
 import { Link } from 'react-router-dom';
 import './RecentPaper.css'; // Import in RecentPaper.jsx
+import getRecentAPI from '../API/getRecentAPI.js';
 
 export default function RecentPaper() {
   const [recent, setRecent] = useState([]);
 
   useEffect(() => {
-    setRecent(recentSearch);
+    const fetchRecent = async () => {
+      const response = await getRecentAPI({ email: email });
+      if (response.statusCode === 200) {
+        setRecent(response.data);
+      } else {
+        setRecent([]);
+      }
+    setRecent();
+    }
+    fetchRecent();
   }, []);
 
   return (

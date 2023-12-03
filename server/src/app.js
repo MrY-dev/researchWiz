@@ -23,6 +23,8 @@ const makeApp = async () => {
 
   app.get('/api/paper/recom-paper', recommendPaper);
 
+  app.get('/api/paper/recent-paper', recentPaper);
+
   app.get('/api/paper/send', sendPaper);
 
   app.use((err, req, res, next) => {

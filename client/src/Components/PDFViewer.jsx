@@ -10,11 +10,10 @@ export default function PDFViewerComponent() {
   useEffect(() => {
     const fetchPdf = async () => {
       try {
-        // Replace 'great' with your actual PDF endpoint
-        // const response = await fetch('great');
-        // const pdfBlob = await response.blob();
-        // const pdfObjectURL = URL.createObjectURL(pdfBlob);
-        // setPdfUrl(pdfObjectURL);
+        const response = await getPaperPDF({  });
+        const pdfBlob = await response.blob();
+        const pdfObjectURL = URL.createObjectURL(pdfBlob);
+        setPdfUrl(pdfObjectURL);
       } catch (error) {
         console.error('Error fetching PDF:', error);
       }
