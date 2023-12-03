@@ -82,6 +82,7 @@ const sendPaper = async (req, res) => {
     return;
   }
 
+    // file_path of kind 
   const f_path = metaData['file_path']; 
   const pdfPath = path.join(__dirname, f_path);
 

@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-import jwt from 'jwt';
+import jwt from 'jsonwebtoken';
 import { addHistory ,getHistory, getName, addUser } from "../services/userFunc.js"
 
 dotenv.config();
@@ -64,10 +64,9 @@ const loginUser = async(req,res) => {
     }
 }
 
-const neoCred = (req, res) => {
+const neoCred = async(req, res) => {
     const user = process.env.NEO_USER
     const password = process.env.NEO_PASS
     res.status(200).json({user, password})
 }
-
-export { getHist , addHist , signupUser , loginUser, neoCred }
+export { getHist , addHist , signupUser , loginUser, neoCred , getUserName}
