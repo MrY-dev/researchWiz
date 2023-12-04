@@ -1,7 +1,8 @@
 export default function CommentList(props) {
+    console.log(props);
     return (
         <div style={{'marginTop': '2em'}}>
-        {props.comments.length === 0 ? (
+        {props.comments === undefined ? (
             <div>
                 <p>Add comments here!</p>
             </div>

@@ -19,8 +19,9 @@ export default function PDFViewerComponent() {
   useEffect(() => {
     const fetchComm = async () => {
       const response = await getCommentAPI({ paperid: paperId, email: email });
+      console.log(response);
         if (response.statusCode === 200) {
-          setComList(response.data);
+          setComList(response.data[0].comments);
         } else {
           setComList([]);
         }
@@ -55,7 +56,10 @@ export default function PDFViewerComponent() {
 
     // Update the comment list if the comment was added successfully
     if (response.statusCode === 200) {
-      setComList([...commList, response.data]);
+      console.log(commList);
+      console.log(typeof(response.data))
+      console.log(response.data)
+      setComList([...commList, newComment]);
       setNewComment('');
     } else {
       console.error('Error adding comment: ', response.data);
