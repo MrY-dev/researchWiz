@@ -7,6 +7,8 @@ dotenv.config();
 const addHist = async(req,res) => {
     let paperid = req.body['paperid'];
     let email = req.body['email'];
+    console.log(paperid)
+    console.log(email)
     if(!paperid || !email){
         res.json("Invalid Input").status(400);
         return;
@@ -16,7 +18,8 @@ const addHist = async(req,res) => {
         return;
     }
     let result = await addHistory(email,paperid);
-    res.json(result).status(200);
+    console.log(result)
+    res.status(200).json(result);
 }
 
 
