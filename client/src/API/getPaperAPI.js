@@ -8,6 +8,7 @@ const getPaperAPI = async (paperData) => {
       'Content-Type': 'application/pdf',
     },
     params: paperData,
+    responseType: 'blob'
   };
 
   let res;

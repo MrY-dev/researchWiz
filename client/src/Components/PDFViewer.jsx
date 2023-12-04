@@ -30,8 +30,7 @@ export default function PDFViewerComponent() {
     const fetchPdf = async () => {
       try {
         const response = await getPaperAPI({ paperid });
-        const pdfBlob = await response.blob();
-        const pdfObjectURL = URL.createObjectURL(pdfBlob);
+        const pdfObjectURL = URL.createObjectURL(response);
         setPdfUrl(pdfObjectURL);
       } catch (error) {
         console.error('Error fetching PDF:', error);
