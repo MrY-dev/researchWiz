@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import mongoose from 'mongoose';
 import HistModel  from "../models/HistSchema.js";
 import UserModel from "../models/UserSchema.js";
 import CommentModel from "../models/CommentSchema.js"
@@ -23,8 +24,9 @@ const addHistory = async(email,paperid) => {
         "email" : email,
         "paperid" : paperid,
     });
-    
+
     console.log(dbquery)
+
     if(dbquery.length === 0){
         try{
             await db.create({
@@ -101,8 +103,9 @@ const checkUser = async (email, password) => {
     }
 };
 
-const getCom = async (email,paperid)=>{
+const getCom = async (email,newid)=>{
     const db = CommentModel;
+    const paperid = new mongoose.Types.ObjectId(newid)
     const query = await db.find({
         email : email,
         paperid : paperid

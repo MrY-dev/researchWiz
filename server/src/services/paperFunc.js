@@ -72,7 +72,6 @@ const recPaper = async(email) => {
         remove_duplicates: true,
     })
     
-    let status = "OK";
     let dbresult = await db.find({
         "keywords" : {
             "$in" : keyword_values
@@ -85,10 +84,16 @@ const recPaper = async(email) => {
 
 const getRec = async(email) => {
     const db = HistModel;
-    let result = db.find({
+    const paperdb = PaperModel;
+    let result = await db.find({
         "email" : email
     }).sort({'timestamp' : '-1'}).limit(5);
-    return result;
+    let papers = []
+    for(let i in result){
+        let md = await paperdb.find({paperid : result[i]['paperid']})
+        papers.push(md[0])
+    }
+    return papers;
 };
 
 const getPaperMD = async (paperid) => {
