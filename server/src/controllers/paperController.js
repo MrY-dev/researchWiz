@@ -85,13 +85,11 @@ const sendPaper = async (req, res) => {
   }
 
     // file_path of kind 
-    console.log(metaData);
   const f_path = metaData[0]['file_path']; 
   const pdfPath = path.join(__dirname, f_path);
   console.log(pdfPath);
 
   const [f_name] = f_path.split('/').slice(-1)
-
   // Set the response headers
   res.setHeader('Content-Type', 'application/pdf');
   res.setHeader('Content-Disposition', `inline; filename=${f_name}`);
