@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 import PaperModel from "../models/PaperSchema.js"
 import HistModel from "../models/HistSchema.js"
 import CommentModel from "../models/CommentSchema.js"
@@ -93,9 +93,8 @@ const getRec = async(email) => {
 
 const getPaperMD = async (paperid) => {
     const db = PaperModel;
-    const pid = new mongoose.ObjectId(paperid)
-    console.log(pid);
-    const res = await db.find({paperid: pid})
+    const pid = new mongoose.Types.ObjectId(paperid)
+    const res = await db.find({paperid: pid});
     console.log(res)
     return res;
 };
