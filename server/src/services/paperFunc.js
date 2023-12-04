@@ -94,8 +94,7 @@ const getRec = async(email) => {
 const getPaperMD = async (paperid) => {
     const db = PaperModel;
     const pid = new mongoose.Types.ObjectId(paperid)
-    const res = await db.find({paperid: pid});
-    console.log(res)
+    const res = await db.find({paperid: pid})
     return res;
 };
 
