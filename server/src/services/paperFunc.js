@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 import PaperModel from "../models/PaperSchema.js"
 import HistModel from "../models/HistSchema.js"
 import CommentModel from "../models/CommentSchema.js"

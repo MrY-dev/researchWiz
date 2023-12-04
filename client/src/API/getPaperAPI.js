@@ -5,7 +5,7 @@ const getPaperAPI = async (paperData) => {
     method: 'get',
     url: 'http://localhost:8080/api/paper/send',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/pdf',
     },
     params: paperData,
   };
@@ -13,10 +13,10 @@ const getPaperAPI = async (paperData) => {
   let res;
   try {
     res = await axios(config);
-    return { statusCode: res.status, data: res };
+    return res.data;
   } catch (err) {
     console.error('Could not get response from server.', err);
-    return { statusCode: err.response.status, data: err.response.data };
+    return null;
   }
 };
 
