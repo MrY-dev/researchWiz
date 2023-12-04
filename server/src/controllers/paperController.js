@@ -1,6 +1,9 @@
 import path from 'path';
+import * as dotenv from 'dotenv';
 import { getPaperPath, getPapers , recPaper ,getRec, getPaperMD} from "../services/paperFunc.js"
 import { addComments ,getCom} from "../services/userFunc.js"
+
+dotenv.config();
 
 //serachPaper searching for paper based on filter in dbs from frontend   
 const searchPaper = async (req, res) => {
@@ -74,7 +77,7 @@ const recommendPaper = async(req,res) => {
 // Send the paper matched according to the title sent as query param 
 const sendPaper = async (req, res) => {
   const paperid = req.query.paperid;
-  const __dirname = './pdfs';
+  const __dirname = process.env.PDF_PATH;
   const metaData = await getPaperMD(paperid);
   if (metaData.length > 1) {
     res.status(401).json([]);
@@ -85,6 +88,7 @@ const sendPaper = async (req, res) => {
     console.log(metaData);
   const f_path = metaData[0]['file_path']; 
   const pdfPath = path.join(__dirname, f_path);
+  console.log(pdfPath);
 
   const [f_name] = f_path.split('/').slice(-1)
 

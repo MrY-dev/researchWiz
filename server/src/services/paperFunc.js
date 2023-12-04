@@ -95,7 +95,7 @@ const getPaperMD = async (paperid) => {
     const db = PaperModel;
     const pid = new mongoose.Types.ObjectId(paperid)
     const res = await db.find({paperid: pid});
-    console.log(res)
+    console.log(res);
     return res;
 };
 
