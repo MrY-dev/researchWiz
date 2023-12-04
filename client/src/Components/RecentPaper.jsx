@@ -36,7 +36,7 @@ export default function RecentPaper() {
                 //   {paper.title}
                 // </Link>
                 <Link
-                  to={`/pdfviewer/${encodeURIComponent(paper.title)}`}
+                  to={`/pdfviewer/${encodeURIComponent(paper.paperid)}`}
                   className="rec-clickable"
                   key={index}
                   style={{ cursor: 'pointer' }}
