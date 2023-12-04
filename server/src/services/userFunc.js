@@ -20,31 +20,15 @@ const addComments = async(email,comment,paperid) => {
 
 const addHistory = async(email,paperid) => {
     const db = HistModel; 
-    let dbquery = await db.find({
-        "email" : email,
-        "paperid" : paperid,
-    });
-
-    console.log(dbquery)
-
-    if(dbquery.length === 0){
-        try{
-            await db.create({
-                "email" : email,
-                "paperid" : paperid,
-            })
-            return true;
-        }
-        catch(err){
-            return false;
-        }
-    }
 
     await db.updateOne({
         "email": email,
         "paperid": paperid,
-        updatedAt: new Date(),
-    });
+    }, {
+            $set: {
+                updatedAt : new Date()
+            }
+        },{upsert: true});
 
     return true;
 };
