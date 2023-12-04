@@ -5,11 +5,13 @@ import CommentList from './CommentList.jsx';
 import InnerNavbar from './InnerNavbar.jsx';
 import getPaperAPI from '../API/getPaperAPI.js';
 import getCommentAPI from '../API/getCommentAPI.js';
+import addCommentAPI from '../API/addCommentAPI.js';
 
 export default function PDFViewerComponent() {
   const { paperid } = useParams();
   const [pdfUrl, setPdfUrl] = useState('');
   const [commList, setComList] = useState([]);
+  const [newComment, setNewComment] = useState('');
 
   const email = localStorage.getItem('email');
   const paperId = localStorage.getItem('selectedPaperId');
@@ -40,6 +42,26 @@ export default function PDFViewerComponent() {
     fetchPdf();
   }, [paperid]);
 
+  const handleCommentChange = (event) => {
+    setNewComment(event.target.value);
+  };
+
+  const handleAddComment = async () => {
+    const response = await addCommentAPI({
+      paperid: paperId,
+      email: email,
+      comment: newComment,
+    });
+
+    // Update the comment list if the comment was added successfully
+    if (response.statusCode === 200) {
+      setComList([...commList, response.data]);
+      setNewComment('');
+    } else {
+      console.error('Error adding comment: ', response.data);
+    }
+  };
+
   return (
     <div>
     <InnerNavbar type="pdf"/>
@@ -47,7 +69,15 @@ export default function PDFViewerComponent() {
       <div className="comments-container">
         <h2>Comments</h2>
         <CommentList comments={commList}/>
-        <button className="add-comment-button">+</button>
+        <div>
+          <input
+              type="text"
+              value={newComment}
+              onChange={handleCommentChange}
+              placeholder="Add a comment..."
+          />
+          <button className="add-comment-button" onClick={handleAddComment}>+</button>
+        </div>
       </div>
       <div className="pdf-container">
         {pdfUrl && <iframe src={pdfUrl} width="100%" height="100%" title="Embedded PDF"></iframe>}
