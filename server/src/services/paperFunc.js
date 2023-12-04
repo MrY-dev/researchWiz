@@ -77,7 +77,23 @@ const recPaper = async(email) => {
             "$in" : keyword_values
         }
     })
-    if(!dbresult){
+    if(dbresult.length=== 0){
+        let hist_keywords = [];
+        for(let i in hist){
+            console.log(hist[i]['paperid'])
+            let paper = await db.find({
+                "paperid" : hist[i]['paperid']
+            })
+            for(let i in paper[0]['keywords']){
+                hist_keywords.push(paper[0]['keywords'][i])
+            }
+        }
+        let dbresult = await db.find({
+            "keywords" : {
+                "$in" : hist_keywords
+            }
+        })
+        return dbresult;
     }
     return dbresult;
 };
