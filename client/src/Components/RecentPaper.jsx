@@ -13,11 +13,11 @@ export default function RecentPaper() {
       const response = await getRecentAPI({ email: email });
       console.log(response)
       if (response.statusCode === 200) {
+        console.log(response.data)
         setRecent(response.data);
       } else {
         setRecent([]);
       }
-    setRecent();
     }
     fetchRecent();
   }, [email]);
